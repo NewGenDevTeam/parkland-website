@@ -1,0 +1,33 @@
+# PARKLAND BY THE RIVER - Video URLs
+# These videos could not be downloaded directly.
+# Save or embed these URLs when building the new website.
+
+## Official Project Video (YouTube - embedded on main website)
+URL: https://www.youtube.com/watch?v=_UkRgwpy0qk
+Start time: t=111s (1:51)
+Notes: Found as YouTube embed in the main website HTML
+
+## Related YouTube Videos
+1. Project Introduction: https://www.youtube.com/watch?v=QYOBwzjU22w
+   Title: "Parkland by the River @ Permas Jaya | From RM3xxK | 8.8km to CIQ JB | Free MOT + Furnishing!"
+   Date: June 17, 2025
+
+2. Phase 2 Launch Event: https://www.youtube.com/watch?v=C9HJYAeWapo
+   Title: "Parkland by The River Phase 2, Permas Jaya Launching Event 090825"
+   Date: August 11, 2025
+
+3. Unit Tour - 2 Bed 2 Bath: https://www.youtube.com/watch?v=tbAxlb_nd2E
+   Title: "Permas Jaya | Parkland By The River | 2 Bed 2 Bath | 3.2 Meter Ceiling Height | 12km to CIQ"
+   Date: October 29, 2024
+
+4. Unit Tour - 3 Bed 2 Bath: https://www.youtube.com/watch?v=sCZ51vGrcb8
+   Title: "Permas Jaya | Parkland By The River | 3 Bed 2 Bath | 3.2 Meter Ceiling Height | 12km to CIQ"
+   Date: October 30, 2024
+
+5. Lifestyle Showcase - Permas Jaya Area: https://www.youtube.com/watch?v=ehJIrOw5yC0
+   Title: "Lifestyle Showcase – Aeon | Masai | Permas Jaya | Johor Bahru"
+   Date: October 21, 2025
+
+## Hero Background (Sky/Drone clip - CDN asset)
+URL: https://landing1parkland.rubilogy.link/wp-content/uploads/revslider/video-media/parklandbytheriver-sky-bg.webp
+Notes: Used as hero background in RevSlider on main website

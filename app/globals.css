@@ -1,0 +1,519 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════════════════
+   PARKLAND BY THE RIVER — Global Design System
+   Color direction : Deep river green · Warm gold · Cream · Charcoal
+   Typography      : Playfair Display (headings) · Inter (body)
+   Reference       : docs/parkland-design-reference.md
+   Do NOT use Relatora lime (#e4f99c) — replaced with champagne gold
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. DESIGN TOKENS ─────────────────────────────────────────────────────── */
+
+@theme inline {
+
+  /* Section backgrounds */
+  --color-river:        #1A2B26;   /* Deep river forest green — hero, contact, footer  */
+  --color-charcoal:     #1C1C1A;   /* Warm near-black — facilities, alternating dark    */
+  --color-cream:        #F8F4EC;   /* Warm off-white — location, blog, light sections   */
+  --color-white:        #FFFFFF;   /* Pure white — cards, nav, floor plan section        */
+
+  /* Accent */
+  --color-gold:         #C8A97E;   /* Champagne gold — CTA buttons, badges, highlights  */
+  --color-gold-deep:    #A88A5C;   /* Deeper gold — hover state                          */
+  --color-gold-tint:    #F0E8D8;   /* Pale gold tint — badge backgrounds, rule accents  */
+
+  /* Text on light backgrounds */
+  --color-ink:          #1A1A1A;   /* Near black — primary headlines                    */
+  --color-body:         #3D3D3D;   /* Dark charcoal — paragraph body text               */
+  --color-subtle:       #6B6B6B;   /* Medium gray — secondary text, meta                */
+  --color-muted:        #A8A298;   /* Warm light gray — captions, placeholders          */
+  --color-border:       #E5DFD4;   /* Warm light border — card borders, dividers        */
+
+  /* Text on dark backgrounds */
+  --color-on-dark:      #FFFFFF;
+  --color-on-dark-dim:  rgba(255, 255, 255, 0.60);
+  --color-on-dark-faint:rgba(255, 255, 255, 0.25);
+
+  /* Overlay */
+  --color-overlay:      rgba(26, 43, 38, 0.72);
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Letter spacing */
+  --tracking-display: -0.04em;   /* Hero/display headlines   */
+  --tracking-heading: -0.03em;   /* Section headings (h2)    */
+  --tracking-sub:     -0.02em;   /* Sub-headings (h3, h4)    */
+  --tracking-label:    0.13em;   /* Uppercase section labels */
+}
+
+
+/* ── KEYFRAMES ─────────────────────────────────────────────────────────────── */
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+/* ── 2. BASE RESET & ELEMENT DEFAULTS ─────────────────────────────────────── */
+
+@layer base {
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Headings default to Playfair Display with tight tracking */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+
+  h1 { letter-spacing: var(--tracking-display); }
+  h2 { letter-spacing: var(--tracking-heading); }
+  h3 { letter-spacing: var(--tracking-sub);     }
+  h4 { letter-spacing: var(--tracking-sub);     }
+
+  p {
+    color: var(--color-body);
+    line-height: 1.75;
+  }
+
+  img, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font: inherit;
+  }
+}
+
+
+/* ── 3. LAYOUT UTILITIES ───────────────────────────────────────────────────── */
+
+@layer components {
+
+  /* ─── Site-wide container ─────────────────────────────────── */
+  /*
+   * max-w-[1280px] centered, with responsive horizontal padding.
+   * Use on every section's inner div, not on the section itself.
+   */
+  .container-site {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-inline: 1.5rem;      /* 24px — mobile */
+
+    @media (width >= 768px) {
+      padding-inline: 2.5rem;    /* 40px — tablet */
+    }
+
+    @media (width >= 1024px) {
+      padding-inline: 4rem;      /* 64px — desktop */
+    }
+  }
+
+  /* ─── Section vertical spacing ───────────────────────────── */
+  /*
+   * Target: ~120px desktop (Relatora reference).
+   * Scaled to 80px mobile → 104px desktop for comfort.
+   */
+  .section-pad {
+    padding-top: 5rem;           /* 80px */
+    padding-bottom: 5rem;
+
+    @media (width >= 1024px) {
+      padding-top: 6.5rem;       /* 104px */
+      padding-bottom: 6.5rem;
+    }
+  }
+
+  .section-pad-lg {
+    padding-top: 6rem;           /* 96px */
+    padding-bottom: 6rem;
+
+    @media (width >= 1024px) {
+      padding-top: 8rem;         /* 128px */
+      padding-bottom: 8rem;
+    }
+  }
+
+
+  /* ── 4. SECTION BACKGROUNDS ─────────────────────────────────────────────── */
+
+  /* Deep river green — hero, contact, footer */
+  .section-dark {
+    background-color: var(--color-river);
+    color: var(--color-on-dark);
+  }
+
+  /* Warm near-black — facilities, secondary dark */
+  .section-darker {
+    background-color: var(--color-charcoal);
+    color: var(--color-on-dark);
+  }
+
+  /* Warm cream — location, blog preview */
+  .section-light {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+  }
+
+  /* Pure white — floor plans, units */
+  .section-white {
+    background-color: #FFFFFF;
+    color: var(--color-ink);
+  }
+
+
+  /* ── 5. SECTION LABEL ────────────────────────────────────────────────────── */
+  /*
+   * Small uppercase tag placed above section headings.
+   * e.g. "OUR FACILITIES"  /  "FLOOR PLANS"  /  "LOCATION"
+   */
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;        /* 11px */
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  /* Variant for use on light/white section backgrounds */
+  .section-label-on-light {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-gold-deep);
+  }
+
+
+  /* ── 6. TYPOGRAPHIC HELPERS ──────────────────────────────────────────────── */
+  /*
+   * Use these on the semantic heading element itself to control
+   * fluid sizing without overriding the heading's tag role.
+   */
+
+  /* Hero/display — large single impact headline */
+  .type-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);   /* 40–72px fluid */
+    line-height: 1.05;
+    letter-spacing: var(--tracking-display);
+  }
+
+  /* Section heading — primary heading for each page section */
+  .type-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.875rem, 3.5vw, 3rem);    /* 30–48px fluid */
+    line-height: 1.12;
+    letter-spacing: var(--tracking-heading);
+  }
+
+  /* Sub-heading — unit names, card titles */
+  .type-subheading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.25rem, 2vw, 1.875rem);   /* 20–30px fluid */
+    line-height: 1.2;
+    letter-spacing: var(--tracking-sub);
+  }
+
+  /* Lead body text — intro paragraphs under section headings */
+  .type-lead {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);   /* 16–19px fluid */
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--color-body);
+  }
+
+  /* Lead text on dark backgrounds */
+  .type-lead-light {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--color-on-dark-dim);
+  }
+
+
+  /* ── 7. BUTTONS ──────────────────────────────────────────────────────────── */
+
+  /* Shared base for all buttons */
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8125rem 2.25rem;  /* 13px 36px */
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9375rem;        /* 15px */
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.15s ease;
+  }
+
+  /*
+   * Primary — gold fill
+   * Works on both dark (river/charcoal) and light (cream/white) sections
+   */
+  .btn-primary {
+    composes: btn-base;
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-gold-deep);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /*
+   * Ghost white — transparent with white border
+   * For dark section backgrounds (river, charcoal)
+   */
+  .btn-ghost-white {
+    composes: btn-base;
+    background-color: transparent;
+    color: #FFFFFF;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .btn-ghost-white:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+
+  /*
+   * Ghost dark — transparent with ink border
+   * For light section backgrounds (cream, white)
+   */
+  .btn-ghost-dark {
+    composes: btn-base;
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1.5px solid var(--color-ink);
+  }
+
+  .btn-ghost-dark:hover {
+    background-color: var(--color-ink);
+    color: #FFFFFF;
+  }
+
+
+  /* ── 8. CARDS ────────────────────────────────────────────────────────────── */
+
+  /* Base card — white background, layered shadow */
+  .card {
+    background-color: #FFFFFF;
+    overflow: hidden;
+    box-shadow:
+      0px 1px 2px rgba(0, 0, 0, 0.06),
+      0px 4px 8px rgba(0, 0, 0, 0.05),
+      0px 12px 20px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .card:hover {
+    box-shadow:
+      0px 2px 4px rgba(0, 0, 0, 0.08),
+      0px 8px 16px rgba(0, 0, 0, 0.07),
+      0px 24px 36px rgba(0, 0, 0, 0.06);
+    transform: translateY(-3px);
+  }
+
+  /* Rounded variant — blog cards, facility tiles */
+  .card-rounded {
+    border-radius: 0.75rem;      /* 12px */
+  }
+
+  /* Card used on dark section backgrounds */
+  .card-on-dark {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-on-dark);
+    transition:
+      background-color 0.2s ease,
+      border-color     0.2s ease,
+      transform        0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow       0.35s ease;
+  }
+
+  .card-on-dark:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(200, 169, 126, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+
+  /* ── 9. DECORATIVE / UTILITY ─────────────────────────────────────────────── */
+
+  /* ── 10. HERO ANIMATIONS ────────────────────────────────────────────────── */
+
+  /*
+   * Staggered reveal for hero content. Apply .hero-animate to each element
+   * and a .delay-N class to control the cascade timing.
+   */
+  .hero-animate {
+    opacity: 0;
+    animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: transform, opacity;
+  }
+
+  .hero-animate-fade {
+    opacity: 0;
+    animation: heroFadeIn 0.8s ease forwards;
+  }
+
+  .delay-100 { animation-delay: 0.10s; }
+  .delay-200 { animation-delay: 0.25s; }
+  .delay-300 { animation-delay: 0.40s; }
+  .delay-400 { animation-delay: 0.55s; }
+  .delay-500 { animation-delay: 0.70s; }
+  .delay-600 { animation-delay: 0.85s; }
+  .delay-700 { animation-delay: 1.05s; }
+
+  /* Gold accent rule — short horizontal line under labels */
+  .gold-rule {
+    display: block;
+    width: 2.5rem;               /* 40px */
+    height: 2px;
+    background-color: var(--color-gold);
+    border: none;
+    border-radius: 1px;
+  }
+
+  /* Stat badge — e.g. "8km to CIQ & RTS" */
+  .stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 1rem;
+    background-color: var(--color-gold-tint);
+    border: 1px solid var(--color-gold);
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;        /* 13px */
+    font-weight: 600;
+    color: var(--color-gold-deep);
+    letter-spacing: 0.01em;
+  }
+
+  /* Stat badge variant for dark backgrounds */
+  .stat-badge-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 1rem;
+    background-color: rgba(200, 169, 126, 0.15);
+    border: 1px solid rgba(200, 169, 126, 0.45);
+    border-radius: 9999px;
+    font-family: var(--font-sans);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    letter-spacing: 0.01em;
+  }
+
+  /* Floating CTA button — fixed bottom-right */
+  .floating-cta {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    box-shadow:
+      0px 4px 12px rgba(26, 43, 38, 0.35),
+      0px 1px 3px rgba(26, 43, 38, 0.20);
+  }
+}
+
+
+/* ── LOCATION SECTION DECORATIVE ANIMATIONS ─────────────────────────────── */
+
+@keyframes locFloat {
+  0%, 100% { transform: translateY(0px);   }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes locGlow {
+  0%, 100% { opacity: 0.15; }
+  50%       { opacity: 0.30; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .loc-float { animation: locFloat 10s ease-in-out infinite; }
+  .loc-glow  { animation: locGlow   7s ease-in-out infinite; }
+}
+
+
+/* ── ACCESSIBILITY: reduced motion ───────────────────────────────────────── */
+/*
+ * Disable CSS-driven hero animations for users who prefer reduced motion.
+ * The JS-driven Reveal component handles its own prefers-reduced-motion check
+ * independently via window.matchMedia inside useEffect.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate,
+  .hero-animate-fade {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
