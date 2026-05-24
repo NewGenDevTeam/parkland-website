@@ -517,3 +517,171 @@
     filter: none;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PAGE LOADER — Parkland By The River
+   Full-screen premium overlay with percentage counter + river-wave line.
+   Appears once per browser session; slides upward on completion.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes loaderFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes loaderRiseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes loaderSlideUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-100%); }
+}
+
+@keyframes loaderWaveDash {
+  from { stroke-dashoffset: 13; }
+  to   { stroke-dashoffset: 0;  }
+}
+
+/* ── Overlay shell ─────────────────────────────────────────────────────── */
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0C0C0A;
+  /* Subtle river-green warmth top-left, faint gold hint bottom-right */
+  background-image:
+    radial-gradient(ellipse 70% 55% at 25% 45%, rgba(26, 43, 38, 0.50) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 75% 62%, rgba(200, 169, 126, 0.04) 0%, transparent 55%);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.loader-exit {
+  animation: loaderSlideUp 0.76s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+/* ── Inner content block ────────────────────────────────────────────────── */
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.5rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* "JOHOR BAHRU" — small gold label, fades in first */
+.loader-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;       /* 11px */
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin: 0 0 1.25rem;
+  opacity: 0;
+  animation: loaderFadeIn 0.6s ease 0.20s forwards;
+}
+
+/* "PARKLAND / By The River" — Playfair, rises up after label */
+.loader-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0 0 2.25rem;
+  opacity: 0;
+  animation: loaderRiseIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
+}
+
+.loader-title em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+/* ── Progress track + wave container ──────────────────────────────────── */
+
+.loader-progress-wrap {
+  width: min(260px, 68vw);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-bottom: 1.125rem;
+}
+
+/* 1px horizontal track */
+.loader-track {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(200, 169, 126, 0.18);
+  position: relative;
+}
+
+/* Gold fill — width driven by JS rAF */
+.loader-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 169, 126, 0.45) 0%,
+    #C8A97E                   100%
+  );
+  will-change: width;
+}
+
+/* River wave SVG */
+.loader-wave-svg {
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+}
+
+.loader-wave-path {
+  stroke: rgba(200, 169, 126, 0.28);
+  stroke-width: 1;
+  fill: none;
+  stroke-dasharray: 8 5;
+  animation: loaderWaveDash 0.9s linear infinite;
+}
+
+/* ── Percentage counter ─────────────────────────────────────────────────── */
+
+.loader-pct {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(200, 169, 126, 0.65);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  animation: loaderFadeIn 0.5s ease 0.85s forwards;
+}
+
+/* ── Reduced-motion override ────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-overlay,
+  .loader-exit,
+  .loader-eyebrow,
+  .loader-title,
+  .loader-pct,
+  .loader-wave-path {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
