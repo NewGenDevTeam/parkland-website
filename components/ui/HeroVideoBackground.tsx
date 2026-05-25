@@ -96,12 +96,15 @@ export default function HeroVideoBackground() {
                    roof is never hidden behind the navbar.
           Desktop: top-0, full cover — landscape frame handles composition.
 
-          object-position 42% horizontal: shifts the focal point left of the
-          image centre to keep the tower in the visible 390 px slice.
-          (Tested value — the tower sits left of the 1920 px midpoint.)     */}
+          Fades OUT in sync with the video fading IN so that only one media
+          layer is ever visible at a time — fixes mobile duplicate hero.    */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 top-16 sm:top-0 bottom-0"
+        className={[
+          'absolute inset-x-0 top-16 sm:top-0 bottom-0',
+          'transition-opacity duration-1200 ease-in',
+          playing ? 'opacity-0' : 'opacity-100',
+        ].join(' ')}
       >
         <Image
           src="/assets/parkland/images/hero-building.webp"
