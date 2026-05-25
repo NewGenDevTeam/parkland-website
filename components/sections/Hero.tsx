@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import SafeAutoplayVideo from '@/components/ui/SafeAutoplayVideo';
+import HeroVideoBackground from '@/components/ui/HeroVideoBackground';
 
 const BADGES = [
   '8km to CIQ & RTS',
@@ -17,15 +17,15 @@ export default function Hero() {
       <div className="absolute inset-0">
 
         {/*
-         * poster= shows instantly while the video loads (or if video fails entirely).
-         * hero-building.webp is the official hero render — same image the original
-         * RevSlider used, so the page always looks correct even with JS/video off.
+         * HeroVideoBackground renders three stacked layers:
+         *  1. hero-sky-bg.webp   — CSS background, always visible
+         *  2. hero-building.webp — Next.js Image (priority), always visible
+         *  3. Hero video         — fades in only once `playing` event fires
+         *
+         * iOS Low Power Mode: video stays opacity-0, layers 1+2 show a
+         * composed fallback that looks great and is never a blank box.
          */}
-        <SafeAutoplayVideo
-          src="/assets/parkland/videos/parkland-hero-building.mp4"
-          poster="/assets/parkland/images/hero-building.webp"
-          className="absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_10%]"
-        />
+        <HeroVideoBackground />
 
         {/* Bottom fade — enough to keep text readable, no color tint */}
         <div className="absolute inset-0 bg-gradient-to-t

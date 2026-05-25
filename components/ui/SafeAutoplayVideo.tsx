@@ -36,6 +36,17 @@ export default function SafeAutoplayVideo({
     const el = ref.current;
     if (!el) return;
 
+    // Set muted properties directly on the DOM node.
+    // React's `muted` prop is not always serialised to the DOM attribute in
+    // all browser/hydration scenarios; setting the property here guarantees it.
+    el.muted = true;
+    // `defaultMuted` is a DOM property, not a valid React/JSX prop — setting
+    // it here avoids the "React does not recognize the prop" console warning.
+    (el as HTMLVideoElement & { defaultMuted: boolean }).defaultMuted = true;
+    // webkit-playsinline covers very old iOS Safari (pre-10). Must use
+    // setAttribute because JSX does not accept hyphenated custom attributes.
+    el.setAttribute('webkit-playsinline', 'true');
+
     // Attempt autoplay. iOS Low Power Mode rejects this promise — the browser
     // will already be showing the poster image, so we just swallow the error.
     el.play().catch(() => {});
@@ -74,7 +85,6 @@ export default function SafeAutoplayVideo({
       aria-hidden="true"
       disablePictureInPicture
       controlsList="nodownload noplaybackrate nofullscreen"
-      {...{ defaultMuted: true, 'webkit-playsinline': 'true' }}
     >
       <source src={src} type="video/mp4" />
     </video>

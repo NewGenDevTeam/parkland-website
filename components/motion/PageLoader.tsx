@@ -17,7 +17,7 @@ export default function PageLoader() {
 
     document.body.style.overflow = 'hidden';
 
-    const DURATION = 1900; // ms — 0 → 100%
+    const DURATION = 700; // ms — 0 → 100% (keeps total blocking time ~1.1s)
     const start    = performance.now();
 
     const tick = (now: number) => {
@@ -35,8 +35,8 @@ export default function PageLoader() {
           setTimeout(() => {
             setVisible(false);
             document.body.style.overflow = '';
-          }, 760);
-        }, 380);
+          }, 500);
+        }, 80);
       }
     };
 

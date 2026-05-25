@@ -564,7 +564,7 @@
 }
 
 .loader-exit {
-  animation: loaderSlideUp 0.76s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  animation: loaderSlideUp 0.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
 }
 
 /* ── Inner content block ────────────────────────────────────────────────── */
