@@ -133,25 +133,21 @@ export default function FacilitiesPage() {
         {/* ══ 3. Full facilities grid ═════════════════════════════════════════ */}
         <FacilitiesGrid />
 
-        {/* ══ 3b. Showcase video — above Lifestyle Themes ═════════════════════ */}
+        {/* ══ 3b. Showcase video — full-bleed, no frame ══════════════════════ */}
         <section className="section-dark section-pad">
-          <div className="container-site">
-            <Reveal from="bottom" delay={0} scale>
-              <div
-                className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden
-                  bg-black
-                  shadow-[0_24px_80px_rgba(0,0,0,0.50)]
-                  ring-1 ring-gold/20"
-              >
-                <SafeAutoplayVideo
-                  src="/assets/parkland/videos/parkland-showcase.mp4"
-                  poster="/assets/parkland/images/hero-render.jpg"
-                  className="w-full aspect-video block object-contain"
-                  style={{ pointerEvents: 'none' }}
-                />
-              </div>
-            </Reveal>
-          </div>
+          <Reveal from="bottom" delay={0} scale>
+            <div
+              className="w-full overflow-hidden"
+              style={{ height: 'clamp(260px, 38vw, 620px)' }}
+            >
+              <SafeAutoplayVideo
+                src="/assets/parkland/videos/parkland-showcase.mp4"
+                poster="/assets/parkland/images/hero-render.jpg"
+                className="w-full h-full block object-cover object-center scale-[1.03]"
+                style={{ pointerEvents: 'none' }}
+              />
+            </div>
+          </Reveal>
         </section>
 
         {/* ══ 4. Thematic highlights ══════════════════════════════════════════ */}
