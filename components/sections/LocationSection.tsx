@@ -4,9 +4,9 @@
 ───────────────────────────────────────────────────────────────────────────── */
 
 import type { ComponentType } from 'react';
-import Image            from 'next/image';
-import Reveal           from '@/components/motion/Reveal';
-import Stagger          from '@/components/motion/Stagger';
+import Image             from 'next/image';
+import Reveal            from '@/components/motion/Reveal';
+import Stagger           from '@/components/motion/Stagger';
 import LocationMasterMap from '@/components/sections/LocationMasterMap';
 
 /* ── Inline SVG icons — 24×24, 1.5pt stroke ─────────────────────────────── */
@@ -184,7 +184,7 @@ export default function LocationSection() {
       {/* ── Decorative background ── */}
       <div
         aria-hidden="true"
-        className="loc-glow absolute -top-40 -right-40 w-[36rem] h-[36rem]
+        className="loc-glow absolute -top-40 -right-40 w-xl h-144
           rounded-full pointer-events-none"
         style={{
           background: 'radial-gradient(circle, rgba(200,169,126,0.13) 0%, rgba(200,169,126,0.04) 55%, transparent 75%)',
@@ -235,7 +235,7 @@ export default function LocationSection() {
                       border border-gold/50 text-gold bg-gold/5
                       rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
                     {label} · {value}
                   </span>
                 </Reveal>
@@ -252,26 +252,39 @@ export default function LocationSection() {
           {/* Right — location overview map */}
           <Reveal from="right" delay={180} scale>
             <div className="lg:sticky lg:top-24">
-              <div
-                className="relative aspect-[4/3] rounded-2xl overflow-hidden
-                  shadow-[0_20px_60px_rgba(0,0,0,0.13),0_4px_16px_rgba(0,0,0,0.07)]
-                  ring-1 ring-[rgba(200,169,126,0.18)]
-                  transition-shadow duration-500 ease-out
-                  hover:shadow-[0_28px_80px_rgba(0,0,0,0.18),0_8px_24px_rgba(0,0,0,0.09)]"
-              >
-                <Image
-                  src="/assets/parkland/location/location-map.webp"
-                  alt="Parkland By The River location map — Permas Jaya, Johor Bahru"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
+              <div className="relative">
                 <div
-                  aria-hidden="true"
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: 'linear-gradient(135deg, rgba(200,169,126,0.07) 0%, transparent 55%)' }}
-                />
+                  className="relative aspect-4/3 rounded-2xl overflow-hidden
+                    shadow-[0_20px_60px_rgba(0,0,0,0.13),0_4px_16px_rgba(0,0,0,0.07)]
+                    ring-1 ring-[rgba(200,169,126,0.18)]
+                    transition-shadow duration-500 ease-out
+                    hover:shadow-[0_28px_80px_rgba(0,0,0,0.18),0_8px_24px_rgba(0,0,0,0.09)]"
+                >
+                  <Image
+                    src="/assets/parkland/location/location-map.webp"
+                    alt="Parkland By The River location map — Permas Jaya, Johor Bahru"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(135deg, rgba(200,169,126,0.07) 0%, transparent 55%)' }}
+                  />
+                </div>
+
+                {/* Location label */}
+                <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2
+                  rounded-xl bg-white/90 backdrop-blur-sm px-3 py-2
+                  shadow-md ring-1 ring-[rgba(200,169,126,0.28)]">
+                  <span className="w-2 h-2 rounded-full bg-gold shrink-0" aria-hidden="true" />
+                  <span className="text-[0.75rem] font-semibold text-[#1a1209] tracking-wide">
+                    Permas Jaya, Johor Bahru
+                  </span>
+                </div>
               </div>
+
               <Reveal from="bottom" delay={420}>
                 <p className="mt-4 text-center text-[0.8125rem] text-subtle">
                   Permas Jaya, Johor Bahru — strategic access to Singapore &amp; major amenities
