@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SafeAutoplayVideo from '@/components/ui/SafeAutoplayVideo';
 
 const BADGES = [
   '8km to CIQ & RTS',
@@ -20,21 +21,11 @@ export default function Hero() {
          * hero-building.webp is the official hero render — same image the original
          * RevSlider used, so the page always looks correct even with JS/video off.
          */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover object-[center_top] sm:object-[center_10%]"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        <SafeAutoplayVideo
+          src="/assets/parkland/videos/parkland-hero-building.mp4"
           poster="/assets/parkland/images/hero-building.webp"
-          aria-hidden="true"
-        >
-          <source
-            src="/assets/parkland/videos/parkland-hero-building.mp4"
-            type="video/mp4"
-          />
-        </video>
+          className="absolute inset-0 w-full h-full object-cover object-[center_20%] sm:object-[center_10%]"
+        />
 
         {/* Bottom fade — enough to keep text readable, no color tint */}
         <div className="absolute inset-0 bg-gradient-to-t

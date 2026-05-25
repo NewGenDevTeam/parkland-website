@@ -1,4 +1,5 @@
-import Reveal from '@/components/motion/Reveal';
+import Reveal              from '@/components/motion/Reveal';
+import SafeAutoplayVideo   from '@/components/ui/SafeAutoplayVideo';
 
 export default function VideoShowcase() {
   return (
@@ -28,20 +29,16 @@ export default function VideoShowcase() {
         <Reveal from="bottom" delay={280} scale>
           <div
             className="w-full max-w-7xl mx-auto rounded-2xl overflow-hidden
+              bg-black
               shadow-[0_24px_80px_rgba(0,0,0,0.55)]
               ring-1 ring-gold/20"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              className="w-full h-auto block"
+            <SafeAutoplayVideo
+              src="/assets/parkland/videos/parkland-showcase.mp4"
+              poster="/assets/parkland/images/hero-render.jpg"
+              className="w-full aspect-video block object-contain"
               style={{ pointerEvents: 'none' }}
-            >
-              <source src="/assets/parkland/videos/parkland-showcase.mp4" type="video/mp4" />
-            </video>
+            />
           </div>
         </Reveal>
 

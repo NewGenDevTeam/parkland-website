@@ -10,6 +10,7 @@ import Link                  from 'next/link';
 import Header                from '@/components/layout/Header';
 import FacilitiesGrid        from '@/components/sections/FacilitiesGrid';
 import FacilityExperienceMap from '@/components/sections/FacilityExperienceMap';
+import SafeAutoplayVideo     from '@/components/ui/SafeAutoplayVideo';
 import Reveal                from '@/components/motion/Reveal';
 import Stagger               from '@/components/motion/Stagger';
 
@@ -138,20 +139,16 @@ export default function FacilitiesPage() {
             <Reveal from="bottom" delay={0} scale>
               <div
                 className="w-full max-w-5xl mx-auto rounded-2xl overflow-hidden
+                  bg-black
                   shadow-[0_24px_80px_rgba(0,0,0,0.50)]
                   ring-1 ring-gold/20"
               >
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  className="w-full h-auto block"
+                <SafeAutoplayVideo
+                  src="/assets/parkland/videos/parkland-showcase.mp4"
+                  poster="/assets/parkland/images/hero-render.jpg"
+                  className="w-full aspect-video block object-contain"
                   style={{ pointerEvents: 'none' }}
-                >
-                  <source src="/assets/parkland/videos/parkland-showcase.mp4" type="video/mp4" />
-                </video>
+                />
               </div>
             </Reveal>
           </div>

@@ -52,7 +52,7 @@ export default function ProjectOverview() {
 
           {/* Image column — slides in from the right */}
           <Reveal from="right" delay={200}>
-            <div className="relative aspect-[4/3] lg:aspect-[4/5] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+            <div className="relative aspect-3/4 lg:aspect-4/5 rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
               <Image
                 src="/assets/parkland/images/main-photo-frame.webp"
                 alt="Parkland By The River — building overview, Permas Jaya, Johor Bahru"
