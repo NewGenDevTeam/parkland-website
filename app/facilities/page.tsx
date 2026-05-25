@@ -135,7 +135,7 @@ export default function FacilitiesPage() {
 
         {/* ══ 3b. Showcase video — full-bleed, no frame ══════════════════════ */}
         <section className="section-dark section-pad">
-          <Reveal from="bottom" delay={0} scale>
+          <Reveal from="bottom" delay={0}>
             <div
               className="w-full overflow-hidden"
               style={{ height: 'clamp(260px, 38vw, 620px)' }}
@@ -143,7 +143,7 @@ export default function FacilitiesPage() {
               <SafeAutoplayVideo
                 src="/assets/parkland/videos/parkland-showcase.mp4"
                 poster="/assets/parkland/images/hero-render.jpg"
-                className="w-full h-full block object-cover object-center scale-[1.03]"
+                className="w-full h-full block object-cover object-center"
                 style={{ pointerEvents: 'none' }}
               />
             </div>

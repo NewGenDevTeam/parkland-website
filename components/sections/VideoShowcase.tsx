@@ -27,7 +27,7 @@ export default function VideoShowcase() {
       </div>
 
       {/* Video — full-bleed, no frame, no side margins */}
-      <Reveal from="bottom" delay={280} scale>
+      <Reveal from="bottom" delay={280}>
         <div
           className="w-full overflow-hidden"
           style={{ height: 'clamp(260px, 38vw, 620px)' }}
@@ -35,7 +35,7 @@ export default function VideoShowcase() {
           <SafeAutoplayVideo
             src="/assets/parkland/videos/parkland-showcase.mp4"
             poster="/assets/parkland/images/hero-render.jpg"
-            className="w-full h-full block object-cover object-center scale-[1.03]"
+            className="w-full h-full block object-cover object-center"
             style={{ pointerEvents: 'none' }}
           />
         </div>
