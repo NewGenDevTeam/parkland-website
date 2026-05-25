@@ -4,9 +4,9 @@ import SafeAutoplayVideo   from '@/components/ui/SafeAutoplayVideo';
 export default function VideoShowcase() {
   return (
     <section className="section-dark section-pad">
-      <div className="container-site">
 
-        {/* Heading */}
+      {/* Heading — stays in container for aligned text */}
+      <div className="container-site">
         <div className="text-center mb-10">
           <Reveal from="bottom" delay={0}>
             <p className="section-label mb-4">Project Showcase</p>
@@ -24,25 +24,23 @@ export default function VideoShowcase() {
             </h2>
           </Reveal>
         </div>
-
-        {/* Video — natural dimensions, no cropping */}
-        <Reveal from="bottom" delay={280} scale>
-          <div
-            className="w-full max-w-7xl mx-auto rounded-2xl overflow-hidden
-              bg-black
-              shadow-[0_24px_80px_rgba(0,0,0,0.55)]
-              ring-1 ring-gold/20"
-          >
-            <SafeAutoplayVideo
-              src="/assets/parkland/videos/parkland-showcase.mp4"
-              poster="/assets/parkland/images/hero-render.jpg"
-              className="w-full aspect-video block object-contain"
-              style={{ pointerEvents: 'none' }}
-            />
-          </div>
-        </Reveal>
-
       </div>
+
+      {/* Video — full-bleed, no frame, no side margins */}
+      <Reveal from="bottom" delay={280} scale>
+        <div
+          className="w-full overflow-hidden"
+          style={{ height: 'clamp(260px, 38vw, 620px)' }}
+        >
+          <SafeAutoplayVideo
+            src="/assets/parkland/videos/parkland-showcase.mp4"
+            poster="/assets/parkland/images/hero-render.jpg"
+            className="w-full h-full block object-cover object-center scale-[1.03]"
+            style={{ pointerEvents: 'none' }}
+          />
+        </div>
+      </Reveal>
+
     </section>
   );
 }

@@ -4,22 +4,21 @@ import Image    from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Three-layer hero background:
+ * Two-layer hero background:
  *
- *  Layer 1 (bottom) — hero-sky-bg.webp as a CSS background.
- *                     Always visible. Provides the atmospheric depth when
- *                     the building image is semi-transparent or the video
- *                     has not yet started.
+ *  Layer 1 ————————— hero-building.webp as a Next.js Image (priority).
+ *                     Covers the full section (inset-0). Fallback for iOS
+ *                     Low Power Mode — always visible until video plays.
+ *                     Fades out in sync with the video to prevent duplicate
+ *                     media being visible at the same time.
  *
- *  Layer 2 ————————— hero-building.webp as a Next.js Image (priority).
- *                     Always visible. This IS the fallback for iOS Low Power
- *                     Mode. It is never hidden, so there is zero blank state.
- *
- *  Layer 3 (top) ———— The hero video starts fully transparent (opacity-0)
+ *  Layer 2 (top) ———— The hero video starts fully transparent (opacity-0)
  *                     and cross-fades to opacity-100 only once the browser
  *                     fires the `playing` event. If autoplay is blocked the
- *                     video stays invisible and the composed image shows
- *                     through perfectly.
+ *                     video stays invisible and Layer 1 shows through.
+ *
+ * Both layers use absolute inset-0 so they cover the full hero section with
+ * no sky gap at the bottom. The section's bg-black is the safe fallback.
  *
  * On the first touchstart / click / scroll the video retries play().
  * All event listeners are removed on unmount — no memory leaks.
@@ -77,31 +76,14 @@ export default function HeroVideoBackground() {
 
   return (
     <>
-      {/* ── Layer 1: Sky atmosphere ─────────────────────────────────────────
-          Fills the FULL section including the area behind the fixed navbar.
-          The semi-transparent navbar shows sky above the building on mobile,
-          which looks natural. CSS background has zero layout cost.         */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          backgroundImage:    'url(/assets/parkland/images/hero-sky-bg.webp)',
-          backgroundSize:     'cover',
-          backgroundPosition: 'center center',
-        }}
-      />
-
-      {/* ── Layer 2: Building fallback image ────────────────────────────────
-          Mobile:  starts at top-16 (64 px = navbar height) so the building
-                   roof is never hidden behind the navbar.
-          Desktop: top-0, full cover — landscape frame handles composition.
-
-          Fades OUT in sync with the video fading IN so that only one media
-          layer is ever visible at a time — fixes mobile duplicate hero.    */}
+      {/* ── Layer 1: Building fallback image ────────────────────────────────
+          Covers the FULL hero section (inset-0) so no background colour or
+          sky layer bleeds in from any edge.
+          Fades OUT in sync with the video fading IN — never both visible.  */}
       <div
         aria-hidden="true"
         className={[
-          'absolute inset-x-0 top-16 sm:top-0 bottom-0',
+          'absolute inset-0',
           'transition-opacity duration-1200 ease-in',
           playing ? 'opacity-0' : 'opacity-100',
         ].join(' ')}
@@ -116,10 +98,10 @@ export default function HeroVideoBackground() {
         />
       </div>
 
-      {/* ── Layer 3: Video ──────────────────────────────────────────────────
-          Identical positioning and focal point to Layer 2 so the cross-fade
-          is seamless — the frame doesn't jump when video takes over.
-          Starts opacity-0; fades to opacity-100 once `playing` event fires. */}
+      {/* ── Layer 2: Video ──────────────────────────────────────────────────
+          Covers the FULL hero section (inset-0), identical focal point to
+          Layer 1 for a seamless cross-fade with no frame jump.
+          Starts opacity-0; fades to opacity-100 once `playing` fires.     */}
       <video
         ref={videoRef}
         autoPlay
@@ -132,7 +114,7 @@ export default function HeroVideoBackground() {
         disablePictureInPicture
         controlsList="nodownload noplaybackrate nofullscreen"
         className={[
-          'absolute inset-x-0 top-16 sm:top-0 bottom-0 w-full',
+          'absolute inset-0 w-full h-full',
           'object-cover object-[42%_center] sm:object-[center_10%]',
           'transition-opacity duration-1200 ease-in',
           playing ? 'opacity-100' : 'opacity-0',
