@@ -10,13 +10,13 @@ const UNIT_OPTIONS = [
 ];
 
 const FIELD_CLASS = `
-  w-full border border-border rounded-xl px-4 py-3
-  text-[0.9375rem] text-ink placeholder:text-muted bg-white
+  w-full border border-border rounded-xl px-[1.15rem] py-[1.05rem]
+  text-[1.175rem] text-ink placeholder:text-muted placeholder:text-[1.05rem] bg-white
   focus:outline-none focus:border-gold/60 focus:ring-2 focus:ring-gold/20
   transition-colors duration-200
 `.trim();
 
-const LABEL_CLASS = 'block text-[0.8125rem] font-semibold text-ink mb-1.5';
+const LABEL_CLASS = 'block text-[1.125rem] font-semibold text-ink mb-2 leading-snug';
 
 type Fields = {
   name:    string;
@@ -70,17 +70,17 @@ export default function ContactForm() {
         </div>
         <h3
           className="font-display font-bold text-ink mb-2"
-          style={{ fontSize: 'clamp(1.125rem, 2vw, 1.375rem)', letterSpacing: '-0.02em' }}
+          style={{ fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', letterSpacing: '-0.02em' }}
         >
           Thank you{fields.name ? `, ${fields.name.split(' ')[0]}` : ''}!
         </h3>
-        <p className="text-[0.9375rem] leading-relaxed text-body max-w-sm mb-7">
+        <p className="text-[1.0625rem] leading-relaxed text-body max-w-sm mb-7">
           We&apos;ve received your message. Our team will be in touch with
           you shortly.
         </p>
         <button
           onClick={() => { setFields(EMPTY); setSubmitted(false); }}
-          className="text-[0.8125rem] font-semibold text-gold hover:text-gold-deep
+          className="text-[1rem] font-semibold text-gold hover:text-gold-deep
             underline underline-offset-2 transition-colors duration-200"
         >
           Send another message
@@ -185,12 +185,14 @@ export default function ContactForm() {
       <button
         type="submit"
         className="w-full btn-base btn-primary mt-1"
+        style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.25rem)' }}
       >
         Send Message
       </button>
 
       {/* Disclaimer */}
-      <p className="text-[0.75rem] text-subtle text-center leading-relaxed">
+      <p className="text-subtle text-center leading-relaxed"
+        style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.65' }}>
         Submitting this form does not confirm booking or purchase.
         Our team will contact you for more information.
       </p>

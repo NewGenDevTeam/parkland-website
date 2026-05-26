@@ -37,14 +37,16 @@ export default function FloorPlansPage() {
           <div className="container-site">
             <div className="max-w-2xl">
               <Reveal from="left" delay={0}>
-                <p className="section-label mb-4">Our Floor Plan</p>
+                <p className="section-label mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Our Floor Plan</p>
               </Reveal>
               <Reveal from="left" delay={80}>
                 <span className="gold-rule mb-7" />
               </Reveal>
               <Reveal from="left" delay={160} blur>
                 {/* "Well-Crafted Modern Homes" — verbatim from old website */}
-                <h1 className="type-heading text-white mb-6">
+                <h1 className="type-heading text-white mb-6"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Well-Crafted Modern Homes
                 </h1>
               </Reveal>
@@ -60,10 +62,12 @@ export default function FloorPlansPage() {
                 <div className="flex flex-wrap gap-6">
                   {FLOOR_PLANS.map(p => (
                     <div key={p.type} className="flex flex-col gap-0.5">
-                      <span className="text-gold font-display font-bold text-[1.125rem] leading-none">
+                      <span className="text-gold font-display font-bold leading-none"
+                        style={{ fontSize: 'clamp(1.25rem, 1.35vw, 1.5rem)' }}>
                         {p.size}
                       </span>
-                      <span className="text-white/50 text-[0.75rem] font-medium tracking-wide">
+                      <span className="text-white/50 font-medium tracking-wide"
+                        style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)' }}>
                         {p.label} · {p.bedrooms} Bed{p.bedrooms > 1 ? 's' : ''}
                       </span>
                     </div>
@@ -80,13 +84,15 @@ export default function FloorPlansPage() {
 
             <div className="text-center mb-8">
               <Reveal from="bottom" delay={0}>
-                <p className="section-label-on-light mb-4">Browse Unit Types</p>
+                <p className="section-label-on-light mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Browse Unit Types</p>
               </Reveal>
               <Reveal from="bottom" delay={80}>
                 <span className="gold-rule mx-auto mb-7" />
               </Reveal>
               <Reveal from="bottom" delay={160} blur>
-                <h2 className="type-heading text-ink mb-5">
+                <h2 className="type-heading text-ink mb-5"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Choose Your Layout
                 </h2>
               </Reveal>
@@ -111,13 +117,15 @@ export default function FloorPlansPage() {
 
             <div className="text-center mb-14">
               <Reveal from="bottom" delay={0}>
-                <p className="section-label-on-light mb-4">Unit Comparison</p>
+                <p className="section-label-on-light mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Unit Comparison</p>
               </Reveal>
               <Reveal from="bottom" delay={80}>
                 <span className="gold-rule mx-auto mb-7" />
               </Reveal>
               <Reveal from="bottom" delay={160} blur>
-                <h2 className="type-heading text-ink mb-5">
+                <h2 className="type-heading text-ink mb-5"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Side by Side
                 </h2>
               </Reveal>
@@ -143,30 +151,34 @@ export default function FloorPlansPage() {
                   >
                     {/* Badge */}
                     <span
-                      className="self-start border border-gold/50 text-gold bg-gold/6
-                        rounded-full px-3 py-1 text-[0.6875rem] font-bold tracking-widest uppercase"
+                      className="floor-plan-detail-text self-start border border-gold/50 text-gold bg-gold/6
+                        rounded-full px-3 py-1 font-bold tracking-widest uppercase"
+                      style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}
                     >
                       {p.specLabel}
                     </span>
 
                     {/* Name + size */}
                     <div>
-                      <h3 className="font-display font-bold text-ink text-[1.1875rem] leading-snug mb-1.5">
+                      <h3 className="font-display font-bold text-ink leading-snug mb-1.5"
+                        style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2.1rem)', lineHeight: '1.25' }}>
                         {p.name}
                       </h3>
                       <p className="text-gold font-display font-bold leading-none"
-                        style={{ fontSize: '1.625rem', letterSpacing: '-0.02em' }}>
+                        style={{ fontSize: 'clamp(1.5rem, 1.8vw, 2rem)', letterSpacing: '-0.02em' }}>
                         {p.size}
                       </p>
                     </div>
 
                     {/* Spec row */}
-                    <div className="flex gap-5 text-[0.875rem]">
-                      <span className="font-semibold text-body">
+                    <div className="flex gap-5">
+                      <span className="floor-plan-detail-text font-semibold text-body"
+                        style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)', lineHeight: '1.5' }}>
                         {p.bedrooms} Bed{p.bedrooms > 1 ? 's' : ''}
                       </span>
                       <span aria-hidden="true" className="text-muted">·</span>
-                      <span className="font-semibold text-body">
+                      <span className="floor-plan-detail-text font-semibold text-body"
+                        style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)', lineHeight: '1.5' }}>
                         {p.bathrooms} Bath{p.bathrooms > 1 ? 's' : ''}
                       </span>
                     </div>
@@ -175,33 +187,39 @@ export default function FloorPlansPage() {
 
                     {/* Key feature (first feature point) */}
                     <div>
-                      <p className="text-[0.6875rem] font-semibold text-muted tracking-widest uppercase mb-2">
+                      <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
+                        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
                         Key Feature
                       </p>
-                      <p className="text-[0.875rem] font-medium text-body">
+                      <p className="floor-plan-detail-text font-medium text-body"
+                        style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
                         {p.features[0]}
                       </p>
                     </div>
 
                     {/* Ideal for */}
                     <div>
-                      <p className="text-[0.6875rem] font-semibold text-muted tracking-widest uppercase mb-2">
+                      <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
+                        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
                         Ideal For
                       </p>
-                      <p className="text-[0.875rem] font-medium text-body">
+                      <p className="floor-plan-detail-text font-medium text-body"
+                        style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
                         {p.suitableFor}
                       </p>
                     </div>
 
                     {/* Description */}
-                    <p className="text-[0.8125rem] leading-relaxed text-subtle grow">
+                    <p className="floor-plan-detail-text leading-relaxed text-subtle grow"
+                      style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
                       {p.description}
                     </p>
 
                     {/* CTA */}
                     <Link
                       href="/contact"
-                      className="btn-base btn-primary text-[0.875rem] py-3 text-center"
+                      className="btn-base btn-primary py-3 text-center"
+                      style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.2rem)' }}
                     >
                       Let&apos;s Talk
                     </Link>
@@ -229,7 +247,8 @@ export default function FloorPlansPage() {
                       style={{ fontSize: 'clamp(1.5rem, 2.5vw, 1.875rem)' }}>
                       {value}
                     </span>
-                    <span className="text-[0.75rem] font-medium text-subtle tracking-wide uppercase">
+                    <span className="floor-plan-detail-text font-medium text-subtle tracking-wide uppercase"
+                      style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.6' }}>
                       {label}
                     </span>
                   </div>
@@ -243,13 +262,15 @@ export default function FloorPlansPage() {
         <section className="section-dark section-pad">
           <div className="container-site text-center">
             <Reveal from="bottom" delay={0}>
-              <p className="section-label mb-4">Take the Next Step</p>
+              <p className="section-label mb-4"
+                style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Take the Next Step</p>
             </Reveal>
             <Reveal from="bottom" delay={80}>
               <span className="gold-rule mx-auto mb-7" />
             </Reveal>
             <Reveal from="bottom" delay={160} blur>
-              <h2 className="type-heading text-white mb-5">
+              <h2 className="type-heading text-white mb-5"
+                style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                 Secure Your Unit Today
               </h2>
             </Reveal>

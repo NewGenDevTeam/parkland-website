@@ -56,41 +56,58 @@ export default function Header() {
           boxShadow:    scrolled ? '0 4px 28px rgba(0,0,0,0.08)'      : 'none',
         }}
       >
-        <div className="container-site relative flex items-center justify-between h-16 lg:h-20">
+        {/*
+         * Full-width relative container — no max-width, no mx-auto.
+         * On desktop, all three zones are absolutely positioned so they
+         * can never crowd each other regardless of viewport width.
+         * On mobile (< lg) the container stays flex/justify-between so
+         * logo and Menu button sit at opposite ends as before.
+         */}
+        <div className="relative w-full h-16 lg:h-20 flex items-center justify-between">
 
-          {/* ── Logo ──────────────────────────────────────────────────────── */}
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/assets/parkland/logo/parkland-logo.webp"
-              alt="Parkland By The River"
-              width={160}
-              height={48}
-              className={`h-9 lg:h-11 w-auto transition-all duration-500 ${
-                !solidBar ? 'brightness-0 invert' : ''
-              }`}
-              priority
-            />
-          </Link>
+          {/* ── Logo — pinned to left edge on desktop ─────────────────────── */}
+          <div
+            className="flex items-center lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:z-[3]"
+            style={{ left: 'clamp(1.5rem, 3vw, 4rem)' }}
+          >
+            <Link href="/" className="shrink-0">
+              <Image
+                src="/assets/parkland/logo/parkland-logo.webp"
+                alt="Parkland By The River"
+                width={160}
+                height={48}
+                className={`h-9 lg:h-11 w-auto transition-all duration-500 ${
+                  !solidBar ? 'brightness-0 invert' : ''
+                }`}
+                priority
+              />
+            </Link>
+          </div>
 
-          {/* ── Desktop nav ───────────────────────────────────────────────── */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-9">
+          {/* ── Desktop nav — centred in the full header width ────────────── */}
+          <nav
+            className="hidden lg:flex lg:absolute lg:top-1/2 lg:left-1/2
+              lg:-translate-x-1/2 lg:-translate-y-1/2 lg:z-[2]
+              items-center gap-6 xl:gap-9"
+          >
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-[0.7875rem] font-medium tracking-widest uppercase
+                className={`relative font-bold uppercase
                   group transition-colors duration-200 ${
                   isActive(link.href)
                     ? 'text-gold'
                     : solidBar
-                      ? 'text-ink/75 hover:text-gold'
+                      ? 'text-ink/85 hover:text-gold'
                       : 'text-white/85 hover:text-white'
                 }`}
+                style={{ fontSize: 'clamp(0.9rem, 0.95vw, 1.05rem)', letterSpacing: '0.12em', lineHeight: '1.2' }}
               >
                 {link.label}
                 {/* Underline reveal on hover / active */}
                 <span
-                  className={`absolute -bottom-1 left-0 h-px bg-gold
+                  className={`absolute -bottom-1 left-0 h-[1.5px] bg-gold
                     transition-all duration-300 ease-out ${
                     isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                   }`}
@@ -99,13 +116,17 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* ── Right cluster: CTA + Menu trigger ────────────────────────── */}
-          <div className="flex items-center gap-5">
+          {/* ── Right cluster — pinned to right edge on desktop ───────────── */}
+          <div
+            className="flex items-center gap-5 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:z-[3]"
+            style={{ right: 'clamp(1.5rem, 3vw, 4rem)' }}
+          >
             <Link
               href="/contact"
               className="hidden lg:inline-flex btn-base btn-primary
                 shadow-[0_2px_14px_rgba(200,169,126,0.40)]
                 hover:shadow-[0_4px_20px_rgba(200,169,126,0.60)]"
+              style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', fontWeight: 700 }}
             >
               Let&apos;s Talk
             </Link>
@@ -115,7 +136,7 @@ export default function Header() {
               aria-label="Open navigation menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(true)}
-              className={`lg:hidden text-[0.6875rem] font-semibold tracking-[0.18em] uppercase
+              className={`lg:hidden text-[0.8125rem] font-semibold tracking-[0.18em] uppercase
                 transition-colors duration-200 ${
                 solidBar ? 'text-ink' : 'text-white/90'
               }`}
@@ -151,7 +172,7 @@ export default function Header() {
           <button
             aria-label="Close navigation menu"
             onClick={() => setMenuOpen(false)}
-            className="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase
+            className="text-[0.8125rem] font-semibold tracking-[0.18em] uppercase
               text-white/60 hover:text-white transition-colors duration-200"
           >
             Close

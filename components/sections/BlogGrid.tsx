@@ -47,10 +47,11 @@ function BlogCard({ post }: { post: BlogPost }) {
       </div>
 
       {/* Card body */}
-      <div className="flex flex-col gap-3 p-6 grow">
+      <div className="flex flex-col gap-3 p-7 grow">
         <span
-          className={`self-start border text-[0.625rem] font-bold tracking-[0.12em] uppercase
+          className={`self-start border font-bold tracking-[0.12em] uppercase
             rounded-full px-3 py-1 ${BLOG_CATEGORY_STYLE[post.category]}`}
+          style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)' }}
         >
           {post.category}
         </span>
@@ -58,24 +59,27 @@ function BlogCard({ post }: { post: BlogPost }) {
         <h3
           className="font-display font-bold text-ink leading-snug
             group-hover:text-gold-deep transition-colors duration-200"
-          style={{ fontSize: 'clamp(0.9375rem, 1.3vw, 1.0625rem)', letterSpacing: '-0.02em' }}
+          style={{ fontSize: 'clamp(1.5rem, 1.7vw, 2rem)', letterSpacing: '-0.02em', lineHeight: '1.25' }}
         >
           {post.title}
         </h3>
 
-        <p className="text-[0.875rem] leading-relaxed text-body grow line-clamp-3">
+        <p className="leading-relaxed text-body grow line-clamp-3"
+          style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
           {post.excerpt}
         </p>
       </div>
 
       {/* Card footer */}
-      <div className="flex items-center justify-between px-6 py-4 border-t border-border">
-        <span className="text-[0.75rem] text-muted font-medium">
+      <div className="flex items-center justify-between px-7 py-5 border-t border-border">
+        <span className="text-muted font-medium"
+          style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.45' }}>
           {post.readTime} min read · {formatDate(post.date)}
         </span>
-        <span className="text-[0.8125rem] font-semibold text-gold
+        <span className="font-semibold text-gold
           group-hover:text-gold-deep transition-colors duration-200
-          flex items-center gap-1.5">
+          flex items-center gap-1.5"
+          style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.2rem)' }}>
           Read More
           <ArrowRight />
         </span>

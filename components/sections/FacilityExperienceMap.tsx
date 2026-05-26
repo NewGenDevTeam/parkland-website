@@ -154,7 +154,7 @@ function PopupCard({
           <p
             className="text-white font-display font-bold leading-snug
               drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]"
-            style={{ fontSize: '0.9375rem', letterSpacing: '-0.01em' }}
+            style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.2rem)', letterSpacing: '-0.01em' }}
           >
             {facility.name}
           </p>
@@ -201,13 +201,15 @@ export default function FacilityExperienceMap() {
       <div className="container-site">
         <div className="text-center mb-12">
           <Reveal from="bottom" delay={0}>
-            <p className="section-label-on-light mb-4">Crafting Lifestyle For Your Well-Being</p>
+            <p className="section-label-on-light mb-4"
+              style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Crafting Lifestyle For Your Well-Being</p>
           </Reveal>
           <Reveal from="bottom" delay={80}>
             <span className="gold-rule mx-auto mb-7" />
           </Reveal>
           <Reveal from="bottom" delay={160} blur>
-            <h2 className="type-heading text-ink mb-5">
+            <h2 className="type-heading text-ink mb-5"
+              style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
               <span className="text-blue-600">19</span> Lifestyle Facilities
             </h2>
           </Reveal>
@@ -304,10 +306,8 @@ export default function FacilityExperienceMap() {
         </Reveal>
 
         {/* Interaction hint */}
-        <p className="mt-3 text-center text-subtle text-[0.75rem]">
-          <span className="hidden lg:inline">
-            Hover a marker · Click to lock · Click again or outside to dismiss
-          </span>
+        <p className="mt-3 text-center text-subtle"
+          style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.6' }}>
           <span className="lg:hidden">
             Tap a numbered marker to preview the facility
           </span>

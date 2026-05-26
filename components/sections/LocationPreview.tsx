@@ -43,10 +43,10 @@ export default function LocationPreview() {
                 {KEY_DISTANCES.map(({ label, km }) => (
                   <span
                     key={label}
-                    className="inline-flex items-center gap-2
+                    className="location-badge-text inline-flex items-center gap-2
                       border border-gold/50 text-gold bg-gold/5
                       rounded-full px-4 py-1.5
-                      text-sm font-semibold tracking-wide"
+                      text-[0.9375rem] font-semibold tracking-wide"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
                     {label} · {km}km
@@ -91,7 +91,7 @@ export default function LocationPreview() {
                 rounded-xl bg-white/90 backdrop-blur-sm px-3 py-2
                 shadow-md ring-1 ring-[rgba(200,169,126,0.28)]">
                 <span className="w-2 h-2 rounded-full bg-gold shrink-0" aria-hidden="true" />
-                <span className="text-[0.75rem] font-semibold text-[#1a1209] tracking-wide">
+                <span className="text-[0.8125rem] font-semibold text-[#1a1209] tracking-wide">
                   Permas Jaya, Johor Bahru
                 </span>
               </div>

@@ -64,10 +64,12 @@ function ContactRow({
         {icon}
       </div>
       <div>
-        <p className="text-[0.6875rem] font-semibold uppercase tracking-widest text-subtle mb-0.5">
+        <p style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}
+          className="font-semibold uppercase tracking-widest text-subtle mb-0.5">
           {label}
         </p>
-        <p className="text-ink font-semibold text-[0.9375rem] leading-snug">
+        <p className="text-ink font-semibold leading-snug"
+          style={{ fontSize: 'clamp(1.15rem, 1.2vw, 1.3rem)', lineHeight: '1.55' }}>
           {value}
         </p>
       </div>
@@ -80,7 +82,7 @@ function ContactRow({
         href={href}
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-        className="block border border-border rounded-xl px-5 py-4
+        className="block border border-border rounded-xl px-5 py-5
           hover:border-gold/40 hover:shadow-[0_4px_16px_rgba(0,0,0,0.06)]
           transition-[border-color,box-shadow] duration-300"
       >
@@ -90,7 +92,7 @@ function ContactRow({
   }
 
   return (
-    <div className="border border-border rounded-xl px-5 py-4">
+    <div className="border border-border rounded-xl px-5 py-5">
       {inner}
     </div>
   );
@@ -108,7 +110,7 @@ export default function ContactInfo() {
         <Reveal from="left" delay={100} blur>
           <h2
             className="font-display font-bold text-ink leading-tight"
-            style={{ fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', letterSpacing: '-0.03em' }}
+            style={{ fontSize: 'clamp(2.3rem, 2.6vw, 3rem)', letterSpacing: '-0.03em', lineHeight: '1.15' }}
           >
             {CONTACT.projectName}
           </h2>
@@ -145,7 +147,8 @@ export default function ContactInfo() {
       {/* Missing info notice */}
       <Reveal from="bottom" delay={440}>
         <div className="border border-gold/25 bg-gold/5 rounded-xl p-4">
-          <p className="text-[0.8125rem] leading-relaxed text-body">
+          <p className="leading-relaxed text-body"
+            style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.65' }}>
             <span className="font-semibold text-ink">Note:</span>{' '}
             Sales gallery address, email address, and operating hours are pending
             client confirmation and will be updated before go-live.
@@ -156,7 +159,8 @@ export default function ContactInfo() {
       {/* Location map preview */}
       <Reveal from="bottom" scale delay={520}>
         <div>
-          <p className="text-[0.6875rem] font-semibold uppercase tracking-widest text-subtle mb-3">
+          <p className="font-semibold uppercase tracking-widest text-subtle mb-3"
+            style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>
             Our Location
           </p>
           <Link href="/location" aria-label="View full location details">
@@ -179,7 +183,7 @@ export default function ContactInfo() {
                 className="absolute bottom-0 inset-x-0 px-4 py-3
                   bg-linear-to-t from-black/60 to-transparent"
               >
-                <p className="text-white text-[0.75rem] font-medium">
+                <p className="text-white text-[0.9375rem] font-medium">
                   Permas Jaya, Johor Bahru → <span className="text-gold">View Location</span>
                 </p>
               </div>

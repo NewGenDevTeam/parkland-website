@@ -20,13 +20,15 @@ export default function FacilitiesGrid() {
         {/* ── Section header ── */}
         <div className="text-center mb-14">
           <Reveal from="bottom" delay={0}>
-            <p className="section-label-on-light mb-4">All 19 Facilities</p>
+            <p className="section-label-on-light mb-4"
+              style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>All 19 Facilities</p>
           </Reveal>
           <Reveal from="bottom" delay={80}>
             <span className="gold-rule mx-auto mb-7" />
           </Reveal>
           <Reveal from="bottom" delay={160} blur>
-            <h2 className="type-heading text-ink mb-5">
+            <h2 className="type-heading text-ink mb-5"
+              style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
               Every Detail, Designed for You
             </h2>
           </Reveal>
@@ -80,7 +82,7 @@ export default function FacilitiesGrid() {
                   <p
                     className="text-white font-display font-bold text-center leading-snug
                       drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]"
-                    style={{ fontSize: 'clamp(0.875rem, 1.4vw, 1.0625rem)', letterSpacing: '-0.01em' }}
+                    style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', letterSpacing: '-0.01em', lineHeight: '1.55' }}
                   >
                     {facility.name}
                   </p>

@@ -37,13 +37,15 @@ export default function BlogPage() {
           <div className="container-site">
             <div className="max-w-2xl">
               <Reveal from="left" delay={0}>
-                <p className="section-label mb-4">Blog & Insights</p>
+                <p className="section-label mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>Blog & Insights</p>
               </Reveal>
               <Reveal from="left" delay={80}>
                 <span className="gold-rule mb-7" />
               </Reveal>
               <Reveal from="left" delay={160} blur>
-                <h1 className="type-heading text-white mb-6">
+                <h1 className="type-heading text-white mb-6"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Lifestyle &amp; Location Insights
                 </h1>
               </Reveal>
@@ -60,9 +62,10 @@ export default function BlogPage() {
                   {CATEGORIES.map(cat => (
                     <span
                       key={cat}
-                      className={`border text-[0.625rem] font-bold tracking-[0.12em]
+                      className={`border font-bold tracking-[0.12em]
                         uppercase rounded-full px-3 py-1
                         ${BLOG_CATEGORY_STYLE[cat]}`}
+                      style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)' }}
                     >
                       {cat}
                     </span>
@@ -79,13 +82,15 @@ export default function BlogPage() {
 
             <div className="text-center mb-12">
               <Reveal from="bottom" delay={0}>
-                <p className="section-label-on-light mb-4">All Articles</p>
+                <p className="section-label-on-light mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>All Articles</p>
               </Reveal>
               <Reveal from="bottom" delay={80}>
                 <span className="gold-rule mx-auto mb-7" />
               </Reveal>
               <Reveal from="bottom" delay={160} blur>
-                <h2 className="type-heading text-ink mb-5">
+                <h2 className="type-heading text-ink mb-5"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Property &amp; Lifestyle Guides
                 </h2>
               </Reveal>
@@ -106,13 +111,15 @@ export default function BlogPage() {
         <section className="section-dark section-pad">
           <div className="container-site text-center">
             <Reveal from="bottom" delay={0}>
-              <p className="section-label mb-4">Explore Further</p>
+              <p className="section-label mb-4"
+                style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>Explore Further</p>
             </Reveal>
             <Reveal from="bottom" delay={80}>
               <span className="gold-rule mx-auto mb-7" />
             </Reveal>
             <Reveal from="bottom" delay={160} blur>
-              <h2 className="type-heading text-white mb-5">
+              <h2 className="type-heading text-white mb-5"
+                style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                 Ready to Explore Parkland By The River?
               </h2>
             </Reveal>

@@ -84,7 +84,7 @@ export default function ProjectOverview() {
                     duration={1500}
                   />
                 </p>
-                <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.1em] text-subtle">
+                <p className="home-stat-label-text text-[0.9375rem] font-semibold uppercase tracking-[0.1em] text-subtle">
                   {stat.label}
                 </p>
               </Reveal>

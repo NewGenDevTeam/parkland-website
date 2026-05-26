@@ -177,10 +177,10 @@ export default function ProjectHighlights() {
 
                 {/* Text */}
                 <div>
-                  <h3 className="text-white font-semibold text-[1rem] leading-snug mb-2">
+                  <h3 className="text-white font-semibold text-[1.0625rem] leading-snug mb-2">
                     {title}
                   </h3>
-                  <p className="text-white/60 text-[0.875rem] leading-relaxed">
+                  <p className="highlight-card-description text-white/60 text-[1rem] leading-relaxed">
                     {description}
                   </p>
                 </div>

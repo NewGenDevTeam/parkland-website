@@ -231,9 +231,9 @@ export default function LocationSection() {
               {KEY_DISTANCES.map(({ label, value }) => (
                 <Reveal key={label} from="bottom" scale>
                   <span
-                    className="inline-flex items-center gap-2
+                    className="location-badge-text inline-flex items-center gap-2
                       border border-gold/50 text-gold bg-gold/5
-                      rounded-full px-4 py-1.5 text-sm font-semibold tracking-wide"
+                      rounded-full px-4 py-1.5 text-[0.9375rem] font-semibold tracking-wide"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" aria-hidden="true" />
                     {label} · {value}
@@ -279,14 +279,14 @@ export default function LocationSection() {
                   rounded-xl bg-white/90 backdrop-blur-sm px-3 py-2
                   shadow-md ring-1 ring-[rgba(200,169,126,0.28)]">
                   <span className="w-2 h-2 rounded-full bg-gold shrink-0" aria-hidden="true" />
-                  <span className="text-[0.75rem] font-semibold text-[#1a1209] tracking-wide">
+                  <span className="text-[0.8125rem] font-semibold text-[#1a1209] tracking-wide">
                     Permas Jaya, Johor Bahru
                   </span>
                 </div>
               </div>
 
               <Reveal from="bottom" delay={420}>
-                <p className="mt-4 text-center text-[0.8125rem] text-subtle">
+                <p className="mt-4 text-center text-[0.9375rem] text-subtle">
                   Permas Jaya, Johor Bahru — strategic access to Singapore &amp; major amenities
                 </p>
               </Reveal>
@@ -345,7 +345,7 @@ export default function LocationSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-semibold text-ink text-[0.9375rem] leading-snug mb-4">
+                  <h3 className="font-semibold text-ink text-[1rem] leading-snug mb-4">
                     {title}
                   </h3>
 
@@ -354,10 +354,10 @@ export default function LocationSection() {
                     {items.map(({ place, distance }) => (
                       <li
                         key={place}
-                        className="flex items-start justify-between gap-2 text-[0.8125rem]"
+                        className="flex items-start justify-between gap-2 text-[0.9375rem]"
                       >
-                        <span className="text-subtle leading-snug">{place}</span>
-                        <span className="font-semibold text-ink shrink-0 tabular-nums">
+                        <span className="location-access-detail text-subtle leading-snug">{place}</span>
+                        <span className="location-access-detail font-semibold text-ink shrink-0 tabular-nums">
                           {distance}
                         </span>
                       </li>

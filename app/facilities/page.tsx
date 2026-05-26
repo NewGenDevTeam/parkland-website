@@ -96,13 +96,15 @@ export default function FacilitiesPage() {
           <div className="container-site">
             <div className="max-w-2xl">
               <Reveal from="left" delay={0}>
-                <p className="section-label mb-4">Lifestyle Facilities</p>
+                <p className="section-label mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Lifestyle Facilities</p>
               </Reveal>
               <Reveal from="left" delay={80}>
                 <span className="gold-rule mb-7" />
               </Reveal>
               <Reveal from="left" delay={160} blur>
-                <h1 className="type-heading text-white mb-6">
+                <h1 className="type-heading text-white mb-6"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   A Sanctuary of Recreation<br className="hidden sm:inline" /> and Relaxation
                 </h1>
               </Reveal>
@@ -156,13 +158,15 @@ export default function FacilitiesPage() {
 
             <div className="text-center mb-14">
               <Reveal from="bottom" delay={0}>
-                <p className="section-label mb-4">Lifestyle Themes</p>
+                <p className="section-label mb-4"
+                  style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Lifestyle Themes</p>
               </Reveal>
               <Reveal from="bottom" delay={80}>
                 <span className="gold-rule mx-auto mb-7" />
               </Reveal>
               <Reveal from="bottom" delay={160} blur>
-                <h2 className="type-heading text-white mb-5">
+                <h2 className="type-heading text-white mb-5"
+                  style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Something for Every Moment
                 </h2>
               </Reveal>
@@ -182,17 +186,19 @@ export default function FacilitiesPage() {
                       <div className="text-gold flex-shrink-0">
                         {svgPaths}
                       </div>
-                      <span className="section-label">{label}</span>
+                      <span className="section-label"
+                        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>{label}</span>
                     </div>
 
                     {/* Heading */}
-                    <h3 className="text-white font-display font-bold text-[1.25rem]
-                      leading-snug tracking-[-0.02em]">
+                    <h3 className="text-white font-display font-bold tracking-[-0.02em]"
+                      style={{ fontSize: 'clamp(1.5rem, 1.7vw, 2rem)', lineHeight: '1.25' }}>
                       {heading}
                     </h3>
 
                     {/* Body */}
-                    <p className="text-white/60 text-[0.9rem] leading-relaxed flex-grow">
+                    <p className="facility-theme-detail text-white/60 flex-grow"
+                      style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.6' }}>
                       {body}
                     </p>
 
@@ -201,9 +207,9 @@ export default function FacilitiesPage() {
                       {facilities.map((f) => (
                         <span
                           key={f}
-                          className="border border-white/15 text-white/50
-                            rounded-full px-3 py-1
-                            text-[0.6875rem] font-medium tracking-wide"
+                          className="facility-theme-detail border border-white/15 text-white/50
+                            rounded-full px-3 py-1 font-medium tracking-wide"
+                          style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.6' }}
                         >
                           {f}
                         </span>
@@ -222,13 +228,15 @@ export default function FacilitiesPage() {
         <section className="section-dark section-pad">
           <div className="container-site text-center">
             <Reveal from="bottom" delay={0}>
-              <p className="section-label mb-4">Take the Next Step</p>
+              <p className="section-label mb-4"
+                style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>Take the Next Step</p>
             </Reveal>
             <Reveal from="bottom" delay={80}>
               <span className="gold-rule mx-auto mb-7" />
             </Reveal>
             <Reveal from="bottom" delay={160} blur>
-              <h2 className="type-heading text-white mb-5">
+              <h2 className="type-heading text-white mb-5"
+                style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                 Secure Your Unit Today
               </h2>
             </Reveal>

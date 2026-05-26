@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Alegreya } from "next/font/google";
 import "./globals.css";
 import HashScrollHandler  from "@/components/motion/HashScrollHandler";
 import PageLoader         from "@/components/motion/PageLoader";
@@ -14,6 +14,12 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-display",
+  display: "swap",
+});
+
+const alegreya = Alegreya({
+  subsets: ["latin"],
+  variable: "--font-alegreya",
   display: "swap",
 });
 
@@ -38,8 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${alegreya.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col font-alegreya">
         <PageLoader />
         <HashScrollHandler />
         {children}

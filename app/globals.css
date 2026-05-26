@@ -39,8 +39,9 @@
   --color-overlay:      rgba(26, 43, 38, 0.72);
 
   /* Typography */
-  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
-  --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display:   "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans:      "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-alegreya:  "Alegreya", Georgia, serif;
 
   /* Letter spacing */
   --tracking-display: -0.04em;   /* Hero/display headlines   */
@@ -79,7 +80,7 @@
   body {
     background-color: #FFFFFF;
     color: var(--color-ink);
-    font-family: var(--font-sans);
+    font-family: var(--font-alegreya);
     font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -209,8 +210,8 @@
    */
   .section-label {
     display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;        /* 11px */
+    font-family: var(--font-alegreya);
+    font-size: 0.75rem;          /* 12px — up from 11px */
     font-weight: 600;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -220,8 +221,8 @@
   /* Variant for use on light/white section backgrounds */
   .section-label-on-light {
     display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.6875rem;
+    font-family: var(--font-alegreya);
+    font-size: 0.75rem;          /* 12px — up from 11px */
     font-weight: 600;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -264,17 +265,47 @@
 
   /* Lead body text — intro paragraphs under section headings */
   .type-lead {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 1.4vw, 1.1875rem);   /* 16–19px fluid */
+    font-family: var(--font-alegreya);
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem); /* 17–20px fluid — up from 16–19px */
     font-weight: 400;
     line-height: 1.75;
     color: var(--color-body);
   }
 
+  /* Project Highlights card description — Alegreya body text */
+  .highlight-card-description {
+    font-family: var(--font-alegreya), serif;
+  }
+
+  /* Location access card detail/distance text — Alegreya body text */
+  .location-access-detail {
+    font-family: var(--font-alegreya), serif;
+  }
+
+  /* Location key-distance badge/pill text — Alegreya body text */
+  .location-badge-text {
+    font-family: var(--font-alegreya), serif;
+  }
+
+  /* Home page stat strip — label text only, not the number */
+  .home-stat-label-text {
+    font-family: var(--font-alegreya), serif;
+  }
+
+  /* Facilities page — lifestyle theme card body + chip text */
+  .facility-theme-detail {
+    font-family: var(--font-alegreya), serif;
+  }
+
+  /* Floor Plans page — comparison card detail + stats strip labels */
+  .floor-plan-detail-text {
+    font-family: var(--font-alegreya), serif;
+  }
+
   /* Lead text on dark backgrounds */
   .type-lead-light {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    font-family: var(--font-alegreya);
+    font-size: clamp(1.0625rem, 1.5vw, 1.25rem); /* 17–20px fluid — up from 16–19px */
     font-weight: 400;
     line-height: 1.75;
     color: var(--color-on-dark-dim);
@@ -291,7 +322,7 @@
     gap: 0.5rem;
     padding: 0.8125rem 2.25rem;  /* 13px 36px */
     border-radius: 9999px;
-    font-family: var(--font-sans);
+    font-family: var(--font-alegreya);
     font-weight: 600;
     font-size: 0.9375rem;        /* 15px */
     letter-spacing: 0.01em;
@@ -448,8 +479,8 @@
     background-color: var(--color-gold-tint);
     border: 1px solid var(--color-gold);
     border-radius: 9999px;
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;        /* 13px */
+    font-family: var(--font-alegreya);
+    font-size: 0.875rem;         /* 14px — up from 13px */
     font-weight: 600;
     color: var(--color-gold-deep);
     letter-spacing: 0.01em;
@@ -464,8 +495,8 @@
     background-color: rgba(200, 169, 126, 0.15);
     border: 1px solid rgba(200, 169, 126, 0.45);
     border-radius: 9999px;
-    font-family: var(--font-sans);
-    font-size: 0.8125rem;
+    font-family: var(--font-alegreya);
+    font-size: 0.875rem;         /* 14px — up from 13px */
     font-weight: 600;
     color: var(--color-gold);
     letter-spacing: 0.01em;
@@ -521,99 +552,109 @@
 
 /* ══════════════════════════════════════════════════════════════════════════
    WHATSAPP FLOATING BUTTON
-   Structure: .wa-wrapper (fixed) > .wa-label + .wa-float > .wa-float-icon
-   Label slides in from right on wrapper hover (desktop only).
+   Structure: .wa-wrapper (fixed) > .wa-float > .wa-float-icon + .wa-label
+   Default: round circle. Desktop hover: expands into pill showing label.
    ══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Outer wrapper — holds fixed position so label + button move together ── */
+/* ── Fixed anchor ────────────────────────────────────────────────────────── */
 .wa-wrapper {
   position: fixed;
   bottom: 1.75rem;
   right: 1.75rem;
   z-index: 9000;
+}
+
+/* ── Circle button (mobile default + desktop default) ───────────────────── */
+/*
+ * padding-left centers the icon inside the circle:
+ *   mobile  60px button, 34px icon → (60-34)/2 = 13px ≈ 0.8125rem
+ * overflow:hidden keeps the label clipped inside the green shape.
+ * width transitions to create the pill-expand on hover.
+ */
+.wa-float {
   display: flex;
   align-items: center;
-  gap: 0.75rem;           /* 12px gap between label and button */
+  justify-content: flex-start;
+  width: 3.75rem;           /* 60px */
+  height: 3.75rem;
+  padding-left: 0.8125rem;  /* centers 34px icon in 60px circle */
+  border-radius: 9999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  text-decoration: none;
+  background: linear-gradient(145deg, #33e87a 0%, #25D366 42%, #18a84e 100%);
+  box-shadow:
+    0 0 0 3px rgba(37, 211, 102, 0.20),
+    0 5px 16px rgba(37, 211, 102, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.26),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    width          0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow     0.25s ease;
 }
 
-/* ── Hover label — hidden by default, desktop only ──────────────────────── */
+.wa-float:active {
+  opacity: 0.9;
+}
+
+/* ── SVG icon ────────────────────────────────────────────────────────────── */
+.wa-float-icon {
+  width: 2.125rem;   /* 34px */
+  height: 2.125rem;
+  flex-shrink: 0;
+}
+
+/* ── Text label — clipped to zero until hover ───────────────────────────── */
 .wa-label {
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;   /* 13px */
+  font-family: var(--font-alegreya);
+  font-size: 0.9375rem;    /* 15px */
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: #ffffff;
   white-space: nowrap;
-  /* Dark river-green pill — matches site colour system */
-  background: rgba(15, 26, 22, 0.90);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 9999px;
-  padding: 0.4375rem 1.0625rem;   /* 7px 17px */
-  /* Hidden by default */
+  overflow: hidden;
+  max-width: 0;
   opacity: 0;
-  transform: translateX(8px);
-  pointer-events: none;
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  margin-left: 0;
+  padding-right: 0;
+  transition:
+    max-width    0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity      0.25s ease,
+    margin-left  0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding-right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reveal label when wrapper is hovered (desktop pointer device) */
+/* ── Desktop hover: pill expansion + label reveal ───────────────────────── */
 @media (hover: hover) {
-  .wa-wrapper:hover .wa-label {
+  .wa-float:hover {
+    width: 12.5rem;   /* ~200px expanded pill */
+    box-shadow:
+      0 0 0 5px rgba(37, 211, 102, 0.26),
+      0 8px 24px rgba(37, 211, 102, 0.55),
+      0 16px 42px rgba(0, 0, 0, 0.32),
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  .wa-float:hover .wa-label {
+    max-width: 8rem;
     opacity: 1;
-    transform: translateX(0);
+    margin-left: 0.625rem;
+    padding-right: 1.25rem;
   }
 }
 
-/* Hide label entirely on mobile — keep button clean and tap-friendly */
+/* ── Mobile: hide label, keep clean circle ───────────────────────────────── */
 @media (max-width: 767px) {
   .wa-label {
     display: none;
   }
 }
 
-/* ── Circular button ─────────────────────────────────────────────────────── */
-.wa-float {
-  width: 8.75rem;    /* 60px mobile — comfortably tap-friendly */
-  height: 8.75rem;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  text-decoration: none;
-  /* Glossy WhatsApp green */
-  background: linear-gradient(145deg, #33e87a 0%, #25D366 42%, #18a84e 100%);
-  box-shadow:
-    0 0 0 3px rgba(37, 211, 102, 0.20),
-    0 5px 16px rgba(37, 211, 102, 0.45),
-    0 10px 30px rgba(0, 0, 0, 0.26),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.45);   /* gloss rim */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.wa-float:hover {
-  transform: translateY(-3px) scale(1.07);
-  box-shadow:
-    0 0 0 5px rgba(37, 211, 102, 0.26),
-    0 8px 24px rgba(37, 211, 102, 0.55),
-    0 16px 42px rgba(0, 0, 0, 0.32),
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
-}
-
-.wa-float:active {
-  transform: translateY(-1px) scale(1.02);
-}
-
-/* ── SVG icon ────────────────────────────────────────────────────────────── */
-.wa-float-icon {
-  width: 5rem;   /* 34px mobile */
-  height: 5rem;
-  flex-shrink: 0;
-}
-
-/* ── Desktop overrides ───────────────────────────────────────────────────── */
+/* ── Desktop sizing ──────────────────────────────────────────────────────── */
+/*
+ * padding-left centers the icon inside the circle:
+ *   desktop 70px button, 38px icon → (70-38)/2 = 16px = 1rem
+ */
 @media (min-width: 768px) {
   .wa-wrapper {
     bottom: 2rem;
@@ -621,13 +662,14 @@
   }
 
   .wa-float {
-    width: 5.375rem;   /* 70px desktop */
-    height: 5.375rem;
+    width: 4.375rem;    /* 70px */
+    height: 4.375rem;
+    padding-left: 1rem; /* centers 38px icon in 70px circle */
   }
 
   .wa-float-icon {
-    width: 2.8rem;     /* 40px desktop */
-    height: 2.8rem;
+    width: 2.375rem;    /* 38px */
+    height: 2.375rem;
   }
 }
 
@@ -694,7 +736,7 @@
 
 /* "JOHOR BAHRU" — small gold label, fades in first */
 .loader-eyebrow {
-  font-family: var(--font-sans);
+  font-family: var(--font-alegreya);
   font-size: 0.6875rem;       /* 11px */
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -773,7 +815,7 @@
 /* ── Percentage counter ─────────────────────────────────────────────────── */
 
 .loader-pct {
-  font-family: var(--font-sans);
+  font-family: var(--font-alegreya);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.12em;

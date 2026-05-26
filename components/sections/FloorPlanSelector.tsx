@@ -88,7 +88,7 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
         <Image src={src} alt={alt} fill className="object-contain"
           sizes="(min-width: 768px) 896px, 100vw" priority />
       </div>
-      <p className="absolute bottom-4 inset-x-0 text-center text-white/35 text-[0.6875rem]">
+      <p className="absolute bottom-4 inset-x-0 text-center text-white/35 text-[0.875rem]">
         Press ESC or click outside to close
       </p>
     </div>,
@@ -147,10 +147,12 @@ export default function FloorPlanSelector() {
                   : 'bg-white border-border hover:border-gold/50 hover:shadow-sm',
               ].join(' ')}
             >
-              <span className="font-sans font-bold text-[0.625rem] tracking-[0.14em] uppercase text-ink">
+              <span className="font-alegreya font-bold uppercase text-ink"
+                style={{ fontSize: 'clamp(0.95rem, 0.95vw, 1.1rem)', lineHeight: '1.2', letterSpacing: '0.12em' }}>
                 {p.label}
               </span>
-              <span className={`text-[0.8125rem] font-semibold tabular-nums ${active ? 'text-ink' : 'text-gold'}`}>
+              <span className={`font-semibold tabular-nums ${active ? 'text-ink' : 'text-gold'}`}
+                style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', lineHeight: '1.3' }}>
                 {p.size} · {bedLabel}
               </span>
             </button>
@@ -192,7 +194,7 @@ export default function FloorPlanSelector() {
               className="absolute inset-0 flex items-center justify-center
                 opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/6"
             >
-              <span className="bg-black/65 text-white text-[0.75rem] font-medium
+              <span className="bg-black/65 text-white text-[0.9375rem] font-medium
                 rounded-full px-4 py-1.5 backdrop-blur-sm">
                 Click to enlarge
               </span>
@@ -205,7 +207,8 @@ export default function FloorPlanSelector() {
             {/* Spec badge */}
             <span
               className="self-start border border-gold/50 text-gold-deep bg-gold/6
-                rounded-full px-4 py-1 text-[0.625rem] font-bold tracking-[0.14em] uppercase"
+                rounded-full px-4 py-1 font-bold tracking-[0.14em] uppercase"
+              style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}
             >
               {plan.specLabel}
             </span>
@@ -213,7 +216,7 @@ export default function FloorPlanSelector() {
             {/* Unit name */}
             <h2
               className="font-display font-bold text-ink leading-tight"
-              style={{ fontSize: 'clamp(1.5rem, 2.2vw, 2rem)', letterSpacing: '-0.03em' }}
+              style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2.1rem)', letterSpacing: '-0.03em', lineHeight: '1.25' }}
             >
               {plan.name}
             </h2>
@@ -231,10 +234,12 @@ export default function FloorPlanSelector() {
                     rounded-xl border border-border bg-[#FAFAF8]"
                 >
                   {icon}
-                  <span className="text-[0.5625rem] font-semibold text-muted tracking-widest uppercase leading-none">
+                  <span className="font-semibold text-muted tracking-widest uppercase leading-none"
+                    style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)' }}>
                     {label}
                   </span>
-                  <span className="font-display font-bold text-ink text-[0.9375rem] leading-none">
+                  <span className="font-display font-bold text-ink leading-none"
+                    style={{ fontSize: 'clamp(1.25rem, 1.35vw, 1.5rem)' }}>
                     {value}
                   </span>
                 </div>
@@ -244,14 +249,16 @@ export default function FloorPlanSelector() {
             <div className="h-px bg-border" />
 
             {/* Description */}
-            <p className="text-[0.9375rem] leading-relaxed text-body">
+            <p className="leading-relaxed text-body"
+              style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
               {plan.description}
             </p>
 
             {/* Features */}
             <ul className="flex flex-col gap-2" aria-label="Key features">
               {plan.features.map(f => (
-                <li key={f} className="flex items-start gap-2 text-[0.875rem] text-body">
+                <li key={f} className="flex items-start gap-2 text-body"
+                  style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)', lineHeight: '1.5' }}>
                   <IcCheck />
                   {f}
                 </li>
@@ -274,8 +281,8 @@ export default function FloorPlanSelector() {
         {/* ── Gallery grid ── */}
         <div>
           <Reveal from="bottom" delay={0}>
-            <h3 className="font-display font-bold text-ink text-[1.125rem] mb-4"
-              style={{ letterSpacing: '-0.02em' }}>
+            <h3 className="font-display font-bold text-ink mb-4"
+              style={{ fontSize: 'clamp(1.4rem, 1.6vw, 1.75rem)', letterSpacing: '-0.02em', lineHeight: '1.25' }}>
               Gallery
             </h3>
           </Reveal>
@@ -307,7 +314,8 @@ export default function FloorPlanSelector() {
           </Stagger>
 
           <Reveal from="bottom" delay={0}>
-            <p className="mt-3 text-[0.6875rem] text-muted">
+            <p className="mt-3 text-muted"
+              style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.6' }}>
               {plan.galleryImages.length} photos — click any to enlarge
             </p>
           </Reveal>

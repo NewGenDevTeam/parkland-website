@@ -68,26 +68,26 @@ const POIS: {
 
 /* ── Popup style helpers (inline so no className conflicts) ──────────────── */
 const POP_TITLE: React.CSSProperties = {
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: '"Alegreya", Georgia, serif',
   fontWeight: 700,
   fontSize:   13,
   color:      '#1a1209',
   marginBottom: 3,
 };
 const POP_SUB: React.CSSProperties = {
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: '"Alegreya", Georgia, serif',
   fontSize:   11,
   color:      '#7a6040',
 };
 const POI_TITLE: React.CSSProperties = {
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: '"Alegreya", Georgia, serif',
   fontWeight: 600,
   fontSize:   12,
   color:      '#111',
   marginBottom: 2,
 };
 const POI_TAG: React.CSSProperties = {
-  fontFamily: 'system-ui, sans-serif',
+  fontFamily: '"Alegreya", Georgia, serif',
   fontSize:   11,
   color:      '#555',
 };
