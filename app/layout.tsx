@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import HashScrollHandler from "@/components/motion/HashScrollHandler";
-import PageLoader        from "@/components/motion/PageLoader";
+import HashScrollHandler  from "@/components/motion/HashScrollHandler";
+import PageLoader         from "@/components/motion/PageLoader";
+import WhatsAppButton     from "@/components/ui/WhatsAppButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
         <PageLoader />
         <HashScrollHandler />
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

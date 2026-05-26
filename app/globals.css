@@ -520,6 +520,119 @@
 
 
 /* ══════════════════════════════════════════════════════════════════════════
+   WHATSAPP FLOATING BUTTON
+   Structure: .wa-wrapper (fixed) > .wa-label + .wa-float > .wa-float-icon
+   Label slides in from right on wrapper hover (desktop only).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Outer wrapper — holds fixed position so label + button move together ── */
+.wa-wrapper {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;           /* 12px gap between label and button */
+}
+
+/* ── Hover label — hidden by default, desktop only ──────────────────────── */
+.wa-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;   /* 13px */
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  white-space: nowrap;
+  /* Dark river-green pill — matches site colour system */
+  background: rgba(15, 26, 22, 0.90);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 9999px;
+  padding: 0.4375rem 1.0625rem;   /* 7px 17px */
+  /* Hidden by default */
+  opacity: 0;
+  transform: translateX(8px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* Reveal label when wrapper is hovered (desktop pointer device) */
+@media (hover: hover) {
+  .wa-wrapper:hover .wa-label {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Hide label entirely on mobile — keep button clean and tap-friendly */
+@media (max-width: 767px) {
+  .wa-label {
+    display: none;
+  }
+}
+
+/* ── Circular button ─────────────────────────────────────────────────────── */
+.wa-float {
+  width: 8.75rem;    /* 60px mobile — comfortably tap-friendly */
+  height: 8.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  /* Glossy WhatsApp green */
+  background: linear-gradient(145deg, #33e87a 0%, #25D366 42%, #18a84e 100%);
+  box-shadow:
+    0 0 0 3px rgba(37, 211, 102, 0.20),
+    0 5px 16px rgba(37, 211, 102, 0.45),
+    0 10px 30px rgba(0, 0, 0, 0.26),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.45);   /* gloss rim */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wa-float:hover {
+  transform: translateY(-3px) scale(1.07);
+  box-shadow:
+    0 0 0 5px rgba(37, 211, 102, 0.26),
+    0 8px 24px rgba(37, 211, 102, 0.55),
+    0 16px 42px rgba(0, 0, 0, 0.32),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.45);
+}
+
+.wa-float:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* ── SVG icon ────────────────────────────────────────────────────────────── */
+.wa-float-icon {
+  width: 5rem;   /* 34px mobile */
+  height: 5rem;
+  flex-shrink: 0;
+}
+
+/* ── Desktop overrides ───────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .wa-wrapper {
+    bottom: 2rem;
+    right: 2rem;
+  }
+
+  .wa-float {
+    width: 5.375rem;   /* 70px desktop */
+    height: 5.375rem;
+  }
+
+  .wa-float-icon {
+    width: 2.8rem;     /* 40px desktop */
+    height: 2.8rem;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
    PAGE LOADER — Parkland By The River
    Full-screen premium overlay with percentage counter + river-wave line.
    Appears once per browser session; slides upward on completion.
