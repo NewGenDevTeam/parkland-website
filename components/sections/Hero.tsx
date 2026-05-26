@@ -43,7 +43,7 @@ export default function Hero() {
       </div>
 
       {/* ── Hero content — real HTML text, SEO-readable ── */}
-      <div className="relative z-10 container-site w-full pb-24 lg:pb-32 pt-40 lg:pt-44">
+      <div className="relative z-10 container-site w-full min-h-screen pb-24 lg:pb-32 pt-56 lg:pt-64">
         <div className="max-w-[38rem] lg:max-w-[46rem]">
 
           {/* Section label */}
