@@ -131,17 +131,19 @@ export default function Header() {
               Let&apos;s Talk
             </Link>
 
-            {/* "Menu" text trigger — replaces hamburger icon */}
+            {/* Hamburger icon trigger — mobile only */}
             <button
               aria-label="Open navigation menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(true)}
-              className={`lg:hidden text-[0.8125rem] font-semibold tracking-[0.18em] uppercase
-                transition-colors duration-200 ${
-                solidBar ? 'text-ink' : 'text-white/90'
+              className={`lg:hidden flex flex-col justify-center items-center gap-1.5
+                p-2 -mr-2 transition-colors duration-200 ${
+                solidBar ? 'text-ink' : 'text-white'
               }`}
             >
-              Menu
+              <span className="block w-5.5 h-0.5 bg-current rounded-sm" />
+              <span className="block w-5.5 h-0.5 bg-current rounded-sm" />
+              <span className="block w-5.5 h-0.5 bg-current rounded-sm" />
             </button>
           </div>
         </div>
