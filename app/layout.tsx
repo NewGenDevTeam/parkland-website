@@ -3,7 +3,7 @@ import { Inter, Playfair_Display, Alegreya } from "next/font/google";
 import "./globals.css";
 import HashScrollHandler  from "@/components/motion/HashScrollHandler";
 import PageLoader         from "@/components/motion/PageLoader";
-import WhatsAppButton     from "@/components/ui/WhatsAppButton";
+import WhatsAppButtonWrapper from "@/components/ui/WhatsAppButtonWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -85,7 +85,7 @@ export default function RootLayout({
         <PageLoader />
         <HashScrollHandler />
         {children}
-        <WhatsAppButton />
+        <WhatsAppButtonWrapper />
       </body>
     </html>
   );

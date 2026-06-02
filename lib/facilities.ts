@@ -59,6 +59,8 @@ export interface FacilityHotspot {
   /** Image/name confirmation status (client sign-off required where true) */
   needsConfirmation:     boolean;
   sourceNote:            string;
+  /** Stable React key — set to `wp-{wpPostId}` for CMS items; absent for static items */
+  uniqueKey?:            string;
 }
 
 export const CATEGORY_COLOR: Record<FacilityCategory, string> = {

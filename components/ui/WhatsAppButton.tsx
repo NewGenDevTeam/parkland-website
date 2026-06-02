@@ -1,8 +1,8 @@
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ href = 'https://wa.me/60136655111' }: { href?: string } = {}) {
   return (
     <div className="wa-wrapper">
       <a
-        href="https://wa.me/60136655111"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"

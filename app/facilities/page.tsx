@@ -14,29 +14,35 @@ import FacilityExperienceMap from '@/components/sections/FacilityExperienceMap';
 import SafeAutoplayVideo     from '@/components/ui/SafeAutoplayVideo';
 import Reveal                from '@/components/motion/Reveal';
 import Stagger               from '@/components/motion/Stagger';
+import { getFacilities, getPageSEO } from '@/lib/wordpress';
 
-export const metadata: Metadata = {
-  title:       'Premium Facilities for Modern Living | Parkland',
-  description: 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
-  keywords:    [
-    'luxury apartment',
-    'apartment with swimming pool',
-    'modern apartment',
-    'apartment with facilities Johor',
-    'apartment with river view Johor',
-    'apartment with premium facilities',
-    'Parkland By The River facilities',
-    'Permas Jaya swimming pool',
-    'serviced apartment amenities Johor Bahru',
-  ],
-  alternates: { canonical: '/facilities' },
-  openGraph: {
-    title:       'Premium Facilities for Modern Living | Parkland',
-    description: 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
-    url:         '/facilities',
-    images:      OG_IMAGE,
-  },
-};
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getPageSEO('facilities');
+  return {
+    title:       seo?.seo_title        || 'Premium Facilities for Modern Living | Parkland',
+    description: seo?.meta_description || 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
+    keywords: [
+      'luxury apartment',
+      'apartment with swimming pool',
+      'modern apartment',
+      'apartment with facilities Johor',
+      'apartment with river view Johor',
+      'apartment with premium facilities',
+      'Parkland By The River facilities',
+      'Permas Jaya swimming pool',
+      'serviced apartment amenities Johor Bahru',
+    ],
+    alternates: { canonical: '/facilities' },
+    openGraph: {
+      title:       seo?.seo_title        || 'Premium Facilities for Modern Living | Parkland',
+      description: seo?.meta_description || 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
+      url:         '/facilities',
+      images:      OG_IMAGE,
+    },
+  };
+}
 
 /* ── Thematic highlights (all facility names are verified from old website) ── */
 const HIGHLIGHTS = [
@@ -98,7 +104,10 @@ const HIGHLIGHTS = [
   },
 ];
 
-export default function FacilitiesPage() {
+export default async function FacilitiesPage() {
+  const cmsFacilities = await getFacilities();
+  const facilities    = cmsFacilities ?? undefined;
+
   return (
     <>
       <Header />
@@ -143,10 +152,10 @@ export default function FacilitiesPage() {
         </section>
 
         {/* ══ 2. Interactive facilities map ══════════════════════════════════ */}
-        <FacilityExperienceMap />
+        <FacilityExperienceMap facilities={facilities} />
 
         {/* ══ 3. Full facilities grid ═════════════════════════════════════════ */}
-        <FacilitiesGrid />
+        <FacilitiesGrid facilities={facilities} />
 
         {/* ══ 3b. Showcase video — full-bleed, no frame ══════════════════════ */}
         <section className="section-dark section-pad">

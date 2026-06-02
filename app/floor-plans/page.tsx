@@ -1,11 +1,3 @@
-/* ─────────────────────────────────────────────────────────────────────────────
-   Floor Plans page — Parkland By The River
-   Content source: docs/parkland-old-website-content.md  (Section 6 & 9)
-   Live reference: https://parklandbytheriver.com.my/#plan
-   Section heading "Well-Crafted Modern Homes" is verbatim from the old website.
-   No prices, APDL, legal details, or completion dates are shown.
-───────────────────────────────────────────────────────────────────────────── */
-
 import type { Metadata } from 'next';
 import Link              from 'next/link';
 import Header            from '@/components/layout/Header';
@@ -13,20 +5,29 @@ import FloorPlanSelector from '@/components/sections/FloorPlanSelector';
 import Reveal            from '@/components/motion/Reveal';
 import Stagger           from '@/components/motion/Stagger';
 import { FLOOR_PLANS }  from '@/lib/floorPlans';
+import { getFloorPlans, getPageSEO } from '@/lib/wordpress';
 
-export const metadata: Metadata = {
-  title:       'Floor Plans | Parkland By The River — Type A, B & C Units',
-  description: 'Explore three thoughtfully designed unit types at Parkland By The River — Type A (562 sqft, 1 Bed), Type B (820 sqft, 2 Bed), and Type C (1,020 sqft, 3 Bed) freehold serviced apartments in Permas Jaya, Johor Bahru.',
-  keywords:    [
-    'Parkland By The River floor plan',
-    'Permas Jaya serviced apartment floor plan',
-    'Type A Type B Type C unit JB',
-    'freehold apartment Johor Bahru 1 2 3 bedroom',
-  ],
-};
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getPageSEO('floor-plans');
+  return {
+    title:       seo?.seo_title        || 'Floor Plans | Parkland By The River — Type A, B & C Units',
+    description: seo?.meta_description || 'Explore three thoughtfully designed unit types at Parkland By The River — Type A (562 sqft, 1 Bed), Type B (820 sqft, 2 Bed), and Type C (1,020 sqft, 3 Bed) freehold serviced apartments in Permas Jaya, Johor Bahru.',
+    keywords: [
+      'Parkland By The River floor plan',
+      'Permas Jaya serviced apartment floor plan',
+      'Type A Type B Type C unit JB',
+      'freehold apartment Johor Bahru 1 2 3 bedroom',
+    ],
+  };
+}
 
 /* ─────────────────────────────────────────────────────────────────────────── */
-export default function FloorPlansPage() {
+export default async function FloorPlansPage() {
+  const cmsPlans = await getFloorPlans();
+  const plans    = cmsPlans ?? FLOOR_PLANS;
+
   return (
     <>
       <Header />
@@ -44,23 +45,20 @@ export default function FloorPlansPage() {
                 <span className="gold-rule mb-7" />
               </Reveal>
               <Reveal from="left" delay={160} blur>
-                {/* "Well-Crafted Modern Homes" — verbatim from old website */}
                 <h1 className="type-heading text-white mb-6"
                   style={{ fontSize: 'clamp(2.4rem, 3vw, 3.4rem)', lineHeight: '1.15' }}>
                   Well-Crafted Modern Homes
                 </h1>
               </Reveal>
               <Reveal from="bottom" delay={300}>
-                {/* Old website description for the floor plan section */}
                 <p className="type-lead-light mb-8 max-w-lg">
                   Three distinct layouts designed to suit your lifestyle needs,
                   all featuring a modern aesthetic and functional design.
                 </p>
               </Reveal>
-              {/* Quick type summary strip — matches old website tab labels */}
               <Reveal from="bottom" delay={420}>
                 <div className="flex flex-wrap gap-6">
-                  {FLOOR_PLANS.map(p => (
+                  {plans.map(p => (
                     <div key={p.type} className="flex flex-col gap-0.5">
                       <span className="text-gold font-display font-bold leading-none"
                         style={{ fontSize: 'clamp(1.25rem, 1.35vw, 1.5rem)' }}>
@@ -105,7 +103,7 @@ export default function FloorPlansPage() {
             </div>
 
             <Reveal from="bottom" delay={120}>
-              <FloorPlanSelector />
+              <FloorPlanSelector plans={plans} />
             </Reveal>
 
           </div>
@@ -137,9 +135,8 @@ export default function FloorPlansPage() {
               </Reveal>
             </div>
 
-            {/* Comparison cards */}
             <Stagger stagger={100} initialDelay={60} className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {FLOOR_PLANS.map(p => (
+              {plans.map(p => (
                 <Reveal key={p.type} from="bottom" scale>
                   <div
                     className="relative bg-white rounded-2xl p-8 flex flex-col gap-5
@@ -149,7 +146,6 @@ export default function FloorPlansPage() {
                       hover:border-gold/50 hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)]
                       hover:-translate-y-1"
                   >
-                    {/* Badge */}
                     <span
                       className="floor-plan-detail-text self-start border border-gold/50 text-gold bg-gold/6
                         rounded-full px-3 py-1 font-bold tracking-widest uppercase"
@@ -158,7 +154,6 @@ export default function FloorPlansPage() {
                       {p.specLabel}
                     </span>
 
-                    {/* Name + size */}
                     <div>
                       <h3 className="font-display font-bold text-ink leading-snug mb-1.5"
                         style={{ fontSize: 'clamp(1.6rem, 1.8vw, 2.1rem)', lineHeight: '1.25' }}>
@@ -170,7 +165,6 @@ export default function FloorPlansPage() {
                       </p>
                     </div>
 
-                    {/* Spec row */}
                     <div className="flex gap-5">
                       <span className="floor-plan-detail-text font-semibold text-body"
                         style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)', lineHeight: '1.5' }}>
@@ -185,37 +179,37 @@ export default function FloorPlansPage() {
 
                     <div className="h-px bg-border" />
 
-                    {/* Key feature (first feature point) */}
-                    <div>
-                      <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
-                        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
-                        Key Feature
-                      </p>
-                      <p className="floor-plan-detail-text font-medium text-body"
-                        style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
-                        {p.features[0]}
-                      </p>
-                    </div>
+                    {p.features[0] && (
+                      <div>
+                        <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
+                          style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
+                          Key Feature
+                        </p>
+                        <p className="floor-plan-detail-text font-medium text-body"
+                          style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
+                          {p.features[0]}
+                        </p>
+                      </div>
+                    )}
 
-                    {/* Ideal for */}
-                    <div>
-                      <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
-                        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
-                        Ideal For
-                      </p>
-                      <p className="floor-plan-detail-text font-medium text-body"
-                        style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
-                        {p.suitableFor}
-                      </p>
-                    </div>
+                    {p.suitableFor && (
+                      <div>
+                        <p className="floor-plan-detail-text font-semibold text-muted tracking-widest uppercase mb-2"
+                          style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)', lineHeight: '1.4' }}>
+                          Ideal For
+                        </p>
+                        <p className="floor-plan-detail-text font-medium text-body"
+                          style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
+                          {p.suitableFor}
+                        </p>
+                      </div>
+                    )}
 
-                    {/* Description */}
                     <p className="floor-plan-detail-text leading-relaxed text-subtle grow"
                       style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
                       {p.description}
                     </p>
 
-                    {/* CTA */}
                     <Link
                       href="/contact"
                       className="btn-base btn-primary py-3 text-center"

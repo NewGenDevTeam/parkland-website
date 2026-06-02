@@ -5,30 +5,36 @@ import Header  from '@/components/layout/Header';
 import BlogGrid from '@/components/sections/BlogGrid';
 import Reveal   from '@/components/motion/Reveal';
 import { BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
+import { getBlogPosts, getPageSEO } from '@/lib/wordpress';
 
-export const metadata: Metadata = {
-  title:       'Property Insights & Investment Guide | Parkland Blog',
-  description: 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
-  keywords:    [
-    'property investment',
-    'investment property',
-    'Johor property investment',
-    'condo investment',
-    'apartment investment',
-    'riverside living',
-    'high rental yield property',
-    'best property investment Johor',
-    'Johor condo investment',
-    'high rental yield Johor property',
-  ],
-  alternates: { canonical: '/blog' },
-  openGraph: {
-    title:       'Property Insights & Investment Guide | Parkland Blog',
-    description: 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
-    url:         '/blog',
-    images:      OG_IMAGE,
-  },
-};
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getPageSEO('blog');
+  return {
+    title:       seo?.seo_title        || 'Property Insights & Investment Guide | Parkland Blog',
+    description: seo?.meta_description || 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
+    keywords: [
+      'property investment',
+      'investment property',
+      'Johor property investment',
+      'condo investment',
+      'apartment investment',
+      'riverside living',
+      'high rental yield property',
+      'best property investment Johor',
+      'Johor condo investment',
+      'high rental yield Johor property',
+    ],
+    alternates: { canonical: '/blog' },
+    openGraph: {
+      title:       seo?.seo_title        || 'Property Insights & Investment Guide | Parkland Blog',
+      description: seo?.meta_description || 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
+      url:         '/blog',
+      images:      OG_IMAGE,
+    },
+  };
+}
 
 const CATEGORIES = [
   'Location Guide',
@@ -39,7 +45,8 @@ const CATEGORIES = [
   'Investment Guide',
 ] as const;
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const cmsPosts = await getBlogPosts();
   return (
     <>
       <Header />
@@ -115,7 +122,7 @@ export default function BlogPage() {
               </Reveal>
             </div>
 
-            <BlogGrid />
+            <BlogGrid posts={cmsPosts ?? undefined} />
 
           </div>
         </section>

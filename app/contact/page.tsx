@@ -4,24 +4,30 @@ import Header      from '@/components/layout/Header';
 import Reveal      from '@/components/motion/Reveal';
 import ContactForm from '@/components/sections/ContactForm';
 import ContactInfo from '@/components/sections/ContactInfo';
+import { getPageSEO } from '@/lib/wordpress';
 
-export const metadata: Metadata = {
-  title:       'Contact Us | Parkland By The River',
-  description: 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
-  keywords:    [
-    'Parkland By The River contact',
-    'Permas Jaya property enquiry',
-    'Johor Bahru serviced apartment contact',
-    'Parkland register interest',
-  ],
-  alternates: { canonical: '/contact' },
-  openGraph: {
-    title:       'Contact Us | Parkland By The River',
-    description: 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
-    url:         '/contact',
-    images:      OG_IMAGE,
-  },
-};
+export const revalidate = 300;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const seo = await getPageSEO('contact');
+  return {
+    title:       seo?.seo_title        || 'Contact Us | Parkland By The River',
+    description: seo?.meta_description || 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
+    keywords: [
+      'Parkland By The River contact',
+      'Permas Jaya property enquiry',
+      'Johor Bahru serviced apartment contact',
+      'Parkland register interest',
+    ],
+    alternates: { canonical: '/contact' },
+    openGraph: {
+      title:       seo?.seo_title        || 'Contact Us | Parkland By The River',
+      description: seo?.meta_description || 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
+      url:         '/contact',
+      images:      OG_IMAGE,
+    },
+  };
+}
 
 export default function ContactPage() {
   return (

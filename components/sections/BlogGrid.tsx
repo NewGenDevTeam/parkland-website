@@ -3,7 +3,10 @@ import Link  from 'next/link';
 import Reveal  from '@/components/motion/Reveal';
 import Stagger from '@/components/motion/Stagger';
 import { BLOG_POSTS, BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
-import type { BlogPost } from '@/lib/blogPosts';
+import type { BlogCategory } from '@/lib/blogPosts';
+import type { DisplayPost } from '@/lib/wordpress';
+
+const FALLBACK_STYLE = 'text-slate-700 bg-slate-50 border-slate-200';
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-GB', {
@@ -23,7 +26,10 @@ function ArrowRight() {
   );
 }
 
-function BlogCard({ post }: { post: BlogPost }) {
+function BlogCard({ post }: { post: DisplayPost }) {
+  const categoryStyle =
+    BLOG_CATEGORY_STYLE[post.category as BlogCategory] ?? FALLBACK_STYLE;
+
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -34,23 +40,25 @@ function BlogCard({ post }: { post: BlogPost }) {
         transition-[box-shadow,transform] duration-300"
     >
       {/* Card image */}
-      <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/10' }}>
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover
-            motion-safe:transition-transform motion-safe:duration-500
-            motion-safe:group-hover:scale-105"
-          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        />
-      </div>
+      {post.image && (
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/10' }}>
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover
+              motion-safe:transition-transform motion-safe:duration-500
+              motion-safe:group-hover:scale-105"
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          />
+        </div>
+      )}
 
       {/* Card body */}
       <div className="flex flex-col gap-3 p-7 grow">
         <span
           className={`self-start border font-bold tracking-[0.12em] uppercase
-            rounded-full px-3 py-1 ${BLOG_CATEGORY_STYLE[post.category]}`}
+            rounded-full px-3 py-1 ${categoryStyle}`}
           style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)' }}
         >
           {post.category}
@@ -88,14 +96,37 @@ function BlogCard({ post }: { post: BlogPost }) {
   );
 }
 
-export default function BlogGrid() {
+export default function BlogGrid({ posts }: { posts?: DisplayPost[] } = {}) {
+  // posts === undefined → API failed → show static fallback
+  // posts === []        → API succeeded, no published posts → show empty state
+  // posts.length > 0   → show CMS posts
+  const displayPosts: DisplayPost[] = posts ?? BLOG_POSTS.map(p => ({
+    id:       p.id,
+    slug:     p.slug,
+    title:    p.title,
+    excerpt:  p.excerpt,
+    category: p.category,
+    readTime: p.readTime,
+    date:     p.date,
+    image:    p.image,
+  }));
+
+  if (posts !== undefined && posts.length === 0) {
+    return (
+      <p className="text-center text-muted py-16"
+        style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
+        No articles published yet.
+      </p>
+    );
+  }
+
   return (
     <Stagger
       stagger={60}
       initialDelay={60}
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
     >
-      {BLOG_POSTS.map(post => (
+      {displayPosts.map(post => (
         <Reveal key={post.id} from="bottom" scale>
           <BlogCard post={post} />
         </Reveal>

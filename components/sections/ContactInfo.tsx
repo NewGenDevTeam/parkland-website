@@ -1,22 +1,13 @@
 import Image from 'next/image';
 import Link  from 'next/link';
 import Reveal from '@/components/motion/Reveal';
+import { getSiteSettings, buildWhatsAppHref } from '@/lib/wordpress';
 
-/*
- * Verified contact data — sources noted per field.
- * needsConfirmation: true = not found in old website; requires client sign-off before display.
- */
-const CONTACT = {
-  projectName: 'Parkland By The River @ Permas Jaya', // verified: docs/parkland-old-website-content.md
-  location:    'Permas Jaya, Johor Bahru, Malaysia',  // verified: old website + docs
-  phone:       '013-665 5111',                        // verified: old website contact section HTML
-  /* WhatsApp URL derivation: 013-665 5111 → remove leading 0 → +60 136655111 */
-  /* needsConfirmation: client to verify correct wa.me number before go-live */
+const FALLBACK = {
+  projectName: 'Parkland By The River @ Permas Jaya',
+  location:    'Permas Jaya, Johor Bahru, Malaysia',
+  phone:       '013-665 5111',
   whatsapp:    'https://wa.me/60136655111',
-
-  /* email:    needsConfirmation — no email found in old website (docs/parkland-missing-info.md #4) */
-  /* showroom: needsConfirmation — no address found in old website (docs/parkland-missing-info.md #10) */
-  /* mapEmbed: needsConfirmation — no embed URL extracted (docs/parkland-missing-info.md #17) */
 };
 
 function IcPhone() {
@@ -98,7 +89,14 @@ function ContactRow({
   );
 }
 
-export default function ContactInfo() {
+export default async function ContactInfo() {
+  const settings = await getSiteSettings();
+
+  const phone    = settings?.phone_number    || FALLBACK.phone;
+  const location = settings?.address         || FALLBACK.location;
+  const waHref   = buildWhatsAppHref(settings, FALLBACK.whatsapp);
+  const email    = settings?.email           || null;
+
   return (
     <div className="flex flex-col gap-6">
 
@@ -112,7 +110,7 @@ export default function ContactInfo() {
             className="font-display font-bold text-ink leading-tight"
             style={{ fontSize: 'clamp(2.3rem, 2.6vw, 3rem)', letterSpacing: '-0.03em', lineHeight: '1.15' }}
           >
-            {CONTACT.projectName}
+            {FALLBACK.projectName}
           </h2>
         </Reveal>
       </div>
@@ -123,23 +121,33 @@ export default function ContactInfo() {
           <ContactRow
             icon={<IcPhone />}
             label="Call Us"
-            value={CONTACT.phone}
-            href={`tel:+60${CONTACT.phone.replace(/^0/, '').replace(/[^0-9]/g, '')}`}
+            value={phone}
+            href={`tel:+60${phone.replace(/^0/, '').replace(/[^0-9]/g, '')}`}
           />
         </Reveal>
         <Reveal from="bottom" delay={280}>
           <ContactRow
             icon={<IcWhatsApp />}
             label="WhatsApp"
-            value={CONTACT.phone}
-            href={CONTACT.whatsapp}
+            value={phone}
+            href={waHref}
           />
         </Reveal>
+        {email && (
+          <Reveal from="bottom" delay={320}>
+            <ContactRow
+              icon={<IcPhone />}
+              label="Email"
+              value={email}
+              href={`mailto:${email}`}
+            />
+          </Reveal>
+        )}
         <Reveal from="bottom" delay={360}>
           <ContactRow
             icon={<IcPin />}
             label="Location"
-            value={CONTACT.location}
+            value={location}
           />
         </Reveal>
       </div>

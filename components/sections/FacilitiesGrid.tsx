@@ -8,11 +8,10 @@ import Image  from 'next/image';
 import Reveal  from '@/components/motion/Reveal';
 import Stagger from '@/components/motion/Stagger';
 import { FACILITIES } from '@/lib/facilities';
+import type { FacilityHotspot } from '@/lib/facilities';
 
-/* Sorted 1 → 19 so the grid always reads in sequence */
-const SORTED = [...FACILITIES].sort((a, b) => a.id - b.id);
-
-export default function FacilitiesGrid() {
+export default function FacilitiesGrid({ facilities }: { facilities?: FacilityHotspot[] } = {}) {
+  const SORTED = [...(facilities ?? FACILITIES)].sort((a, b) => a.id - b.id);
   return (
     <section className="section-white section-pad">
       <div className="container-site">
@@ -47,7 +46,7 @@ export default function FacilitiesGrid() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
           {SORTED.map((facility) => (
-            <Reveal key={facility.id} from="bottom" scale>
+            <Reveal key={facility.uniqueKey ?? String(facility.id)} from="bottom" scale>
               <div
                 className="group relative overflow-hidden rounded-2xl aspect-4/3
                   shadow-[0_2px_12px_rgba(0,0,0,0.12)]

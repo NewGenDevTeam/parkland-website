@@ -7,7 +7,7 @@ import Link   from 'next/link';
 import Reveal  from '@/components/motion/Reveal';
 import Stagger from '@/components/motion/Stagger';
 import { FLOOR_PLANS } from '@/lib/floorPlans';
-import type { FloorPlanType } from '@/lib/floorPlans';
+import type { FloorPlan, FloorPlanType } from '@/lib/floorPlans';
 
 /* ── SVG icons ──────────────────────────────────────────────────────────────── */
 function IcBed() {
@@ -97,7 +97,9 @@ function Lightbox({ src, alt, onClose }: { src: string; alt: string; onClose: ()
 }
 
 /* ── Main selector ──────────────────────────────────────────────────────────── */
-export default function FloorPlanSelector() {
+export default function FloorPlanSelector({ plans: plansProp }: { plans?: FloorPlan[] } = {}) {
+  const plans = plansProp ?? FLOOR_PLANS;
+
   const [selectedType, setSelectedType] = useState<FloorPlanType>('A');
   const [visible,      setVisible]      = useState(true);
   const [lightbox,     setLightbox]     = useState<{ src: string; alt: string } | null>(null);
@@ -106,7 +108,7 @@ export default function FloorPlanSelector() {
 
   useEffect(() => { setMounted(true); }, []);
 
-  const plan = FLOOR_PLANS.find(p => p.type === selectedType)!;
+  const plan = (plans.find(p => p.type === selectedType) ?? plans[0])!;
 
   const selectType = useCallback((type: FloorPlanType) => {
     if (type === selectedType) return;
@@ -130,7 +132,7 @@ export default function FloorPlanSelector() {
         aria-label="Unit type"
         className="flex justify-center gap-2 sm:gap-3 flex-wrap mb-7"
       >
-        {FLOOR_PLANS.map(p => {
+        {plans.map(p => {
           const active = p.type === selectedType;
           return (
             <button

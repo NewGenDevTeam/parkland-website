@@ -6,6 +6,7 @@ import Reveal from '@/components/motion/Reveal';
 import { FACILITIES } from '@/lib/facilities';
 import type { FacilityHotspot } from '@/lib/facilities';
 
+
 /* ── Inline keyframes ───────────────────────────────────────────────────────── */
 const ANIM_CSS = `
   @keyframes mrkPulse {
@@ -165,7 +166,8 @@ function PopupCard({
 }
 
 /* ── Main component ─────────────────────────────────────────────────────────── */
-export default function FacilityExperienceMap() {
+export default function FacilityExperienceMap({ facilities }: { facilities?: FacilityHotspot[] } = {}) {
+  const facilitiesData = facilities ?? FACILITIES;
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [lockedId,  setLockedId]  = useState<number | null>(null);
 
@@ -251,11 +253,11 @@ export default function FacilityExperienceMap() {
 
             {/* Markers + popups */}
             <div className="absolute inset-0 pointer-events-none">
-              {FACILITIES.map((f) => {
+              {facilitiesData.map((f) => {
                 const isActive = activeId === f.id;
                 return (
                   <div
-                    key={f.id}
+                    key={f.uniqueKey ?? String(f.id)}
                     className="absolute"
                     style={{
                       left:      `${f.x}%`,
