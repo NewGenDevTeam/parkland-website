@@ -6,6 +6,7 @@
  * existing static data when null is returned.
  */
 
+import { FLOOR_PLANS } from '@/lib/floorPlans';
 import type { FloorPlan, FloorPlanType, GalleryImage } from '@/lib/floorPlans';
 import type { FacilityHotspot, FacilityCategory }      from '@/lib/facilities';
 import { FACILITIES } from '@/lib/facilities';
@@ -244,9 +245,14 @@ function mapFloorPlans(raw: WPFloorPlanRaw[]): FloorPlan[] {
       const img3    = resolveImage(item.acf.image_3);
       const planName = item.acf.plan_name || `Type ${type}`;
 
-      const gallery: GalleryImage[] = [];
-      if (img2) gallery.push({ src: img2, alt: `${planName} — interior view 2`, needsImageConfirmation: false });
-      if (img3) gallery.push({ src: img3, alt: `${planName} — interior view 3`, needsImageConfirmation: false });
+      const staticPlan = FLOOR_PLANS.find(p => p.type === type);
+
+      const cmsGallery: GalleryImage[] = [];
+      if (img2) cmsGallery.push({ src: img2, alt: `${planName} — interior view 2`, needsImageConfirmation: false });
+      if (img3) cmsGallery.push({ src: img3, alt: `${planName} — interior view 3`, needsImageConfirmation: false });
+
+      // Fall back to hardcoded gallery when CMS has no image_2 / image_3
+      const gallery = cmsGallery.length > 0 ? cmsGallery : (staticPlan?.galleryImages ?? []);
 
       const sqftMatch = String(item.acf.area_size).match(/[\d,]+/);
       const sqft = sqftMatch ? parseInt(sqftMatch[0].replace(',', ''), 10) : 0;
@@ -262,9 +268,9 @@ function mapFloorPlans(raw: WPFloorPlanRaw[]): FloorPlan[] {
         bedrooms:     Number(item.acf.bedrooms)  || 0,
         bathrooms:    Number(item.acf.bathrooms) || 0,
         description:  item.acf.description || '',
-        features:     [],
-        suitableFor:  '',
-        floorPlanSrc: mainImg,
+        features:     staticPlan?.features    ?? [],
+        suitableFor:  staticPlan?.suitableFor ?? '',
+        floorPlanSrc: mainImg || (staticPlan?.floorPlanSrc ?? ''),
         galleryImages: gallery,
       } satisfies FloorPlan;
     });
