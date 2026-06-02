@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/seoConfig';
 import Link   from 'next/link';
 import Header  from '@/components/layout/Header';
 import BlogGrid from '@/components/sections/BlogGrid';
@@ -6,16 +7,27 @@ import Reveal   from '@/components/motion/Reveal';
 import { BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
 
 export const metadata: Metadata = {
-  title:       'Blog | Parkland By The River',
-  description: 'Read lifestyle, location, and property guides about Parkland By The River, Permas Jaya, Johor Bahru connectivity, floor plans, and riverside living.',
+  title:       'Property Insights & Investment Guide | Parkland Blog',
+  description: 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
   keywords:    [
-    'Parkland By The River blog',
-    'Permas Jaya lifestyle guide',
-    'Johor Bahru property buyer guide',
-    'riverside living Johor Bahru',
-    'JB floor plan guide',
-    'CIQ RTS connectivity',
+    'property investment',
+    'investment property',
+    'Johor property investment',
+    'condo investment',
+    'apartment investment',
+    'riverside living',
+    'high rental yield property',
+    'best property investment Johor',
+    'Johor condo investment',
+    'high rental yield Johor property',
   ],
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title:       'Property Insights & Investment Guide | Parkland Blog',
+    description: 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
+    url:         '/blog',
+    images:      OG_IMAGE,
+  },
 };
 
 const CATEGORIES = [
@@ -24,6 +36,7 @@ const CATEGORIES = [
   'Buyer Guide',
   'Floor Plan Guide',
   'Connectivity',
+  'Investment Guide',
 ] as const;
 
 export default function BlogPage() {

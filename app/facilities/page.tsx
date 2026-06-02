@@ -6,6 +6,7 @@
 ───────────────────────────────────────────────────────────────────────────── */
 
 import type { Metadata } from 'next';
+import { OG_IMAGE } from '@/lib/seoConfig';
 import Link                  from 'next/link';
 import Header                from '@/components/layout/Header';
 import FacilitiesGrid        from '@/components/sections/FacilitiesGrid';
@@ -15,14 +16,26 @@ import Reveal                from '@/components/motion/Reveal';
 import Stagger               from '@/components/motion/Stagger';
 
 export const metadata: Metadata = {
-  title:       'Facilities | Parkland By The River — 19 Lifestyle Amenities',
-  description: 'Discover 19 lifestyle facilities at Parkland By The River — swimming pool, gymnasium, water slide, BBQ pit, sauna, serenity garden, and more on the dedicated podium floor in Permas Jaya.',
+  title:       'Premium Facilities for Modern Living | Parkland',
+  description: 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
   keywords:    [
+    'luxury apartment',
+    'apartment with swimming pool',
+    'modern apartment',
+    'apartment with facilities Johor',
+    'apartment with river view Johor',
+    'apartment with premium facilities',
     'Parkland By The River facilities',
     'Permas Jaya swimming pool',
     'serviced apartment amenities Johor Bahru',
-    'podium floor facilities JB',
   ],
+  alternates: { canonical: '/facilities' },
+  openGraph: {
+    title:       'Premium Facilities for Modern Living | Parkland',
+    description: 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
+    url:         '/facilities',
+    images:      OG_IMAGE,
+  },
 };
 
 /* ── Thematic highlights (all facility names are verified from old website) ── */

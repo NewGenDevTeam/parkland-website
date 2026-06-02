@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Header  from '@/components/layout/Header';
 import Reveal  from '@/components/motion/Reveal';
 import { BLOG_POSTS, BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
+import { OG_IMAGE } from '@/lib/seoConfig';
 
 /* ── SSG — pre-render all 8 slugs at build time ─────────────────────────── */
 export function generateStaticParams() {
@@ -21,6 +22,14 @@ export async function generateMetadata({
   return {
     title:       `${post.title} | Parkland By The River`,
     description: post.excerpt,
+    keywords:    [post.keyword, 'Parkland By The River', 'Johor Bahru property'],
+    alternates:  { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      title:       `${post.title} | Parkland By The River`,
+      description: post.excerpt,
+      url:         `/blog/${post.slug}`,
+      images:      OG_IMAGE,
+    },
   };
 }
 

@@ -131,8 +131,7 @@ export default function FloorPlanSelector() {
         className="flex justify-center gap-2 sm:gap-3 flex-wrap mb-7"
       >
         {FLOOR_PLANS.map(p => {
-          const active   = p.type === selectedType;
-          const bedLabel = p.bedrooms === 1 ? '1 Bed' : `${p.bedrooms} Beds`;
+          const active = p.type === selectedType;
           return (
             <button
               key={p.type}
@@ -153,7 +152,7 @@ export default function FloorPlanSelector() {
               </span>
               <span className={`font-semibold tabular-nums ${active ? 'text-ink' : 'text-gold'}`}
                 style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', lineHeight: '1.3' }}>
-                {p.size} · {bedLabel}
+                {p.size} · {p.bedrooms} Bed {p.bathrooms} Bath
               </span>
             </button>
           );
@@ -222,7 +221,7 @@ export default function FloorPlanSelector() {
             </h2>
 
             {/* Stat cards: Bedroom / Bathroom / Area */}
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 w-[110%]">
               {[
                 { icon: <IcBed  />, label: 'Bedroom(s)',  value: String(plan.bedrooms)  },
                 { icon: <IcBath />, label: 'Bathroom(s)', value: String(plan.bathrooms) },
@@ -230,8 +229,7 @@ export default function FloorPlanSelector() {
               ].map(({ icon, label, value }) => (
                 <div
                   key={label}
-                  className="flex flex-col items-center text-center gap-1.5 py-3 px-2
-                    rounded-xl border border-border bg-[#FAFAF8]"
+                  className="flex flex-col items-center text-center gap-1.5 py-3 px-3 rounded-xl border border-[#D8C7A7]"
                 >
                   {icon}
                   <span className="font-semibold text-muted tracking-widest uppercase leading-none"

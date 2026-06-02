@@ -68,7 +68,7 @@ export default function FloorPlansPage() {
                       </span>
                       <span className="text-white/50 font-medium tracking-wide"
                         style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.25rem)' }}>
-                        {p.label} · {p.bedrooms} Bed{p.bedrooms > 1 ? 's' : ''}
+                        {p.label} - {p.bedrooms} Bed {p.bathrooms} Bath
                       </span>
                     </div>
                   ))}
