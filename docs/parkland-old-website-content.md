@@ -265,7 +265,7 @@ Gallery images (numbered 13–21) — property/lifestyle renders available.
 ## 13. FOOTER
 
 **Copyright:** © 2026 PARKLAND BY THE RIVER | PARKLAND GROUP
-**Website Design Credit:** DESIGNED BY RUBILOGY
+**Website Design Credit:** DESIGNED BY NEWGEN
 
 **Social Links:** Referenced (specific handles not extracted)
 
