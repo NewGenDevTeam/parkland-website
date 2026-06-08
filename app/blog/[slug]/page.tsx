@@ -155,7 +155,7 @@ export default async function BlogPostPage({
 
             {/* Featured image — shown only when WordPress has one */}
             {post.image && (
-              <Reveal from="bottom" delay={0}>
+              <Reveal from="bottom" delay={0} threshold={0.05} margin="0px 0px 60px 0px">
                 <div className="max-w-3xl mx-auto mb-12 rounded-2xl overflow-hidden
                   shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
                   <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
@@ -176,7 +176,7 @@ export default async function BlogPostPage({
 
               {post.content ? (
                 /* CMS post with content — render WordPress HTML */
-                <Reveal from="bottom" delay={0}>
+                <Reveal from="bottom" delay={0} threshold={0.05} margin="0px 0px 60px 0px">
                   <div
                     className="text-body blog-content
                       [&_p]:mb-5 [&_p]:leading-relaxed
@@ -194,13 +194,13 @@ export default async function BlogPostPage({
               ) : (
                 /* Static fallback or CMS post with no body yet */
                 <>
-                  <Reveal from="bottom" delay={0}>
+                  <Reveal from="bottom" delay={0} threshold={0.05} margin="0px 0px 60px 0px">
                     <p className="leading-relaxed text-body mb-8"
                       style={{ fontSize: 'clamp(1.15rem, 1.25vw, 1.35rem)', lineHeight: '1.65' }}>
                       {post.excerpt}
                     </p>
                   </Reveal>
-                  <Reveal from="bottom" delay={80}>
+                  <Reveal from="bottom" delay={80} threshold={0.05} margin="0px 0px 60px 0px">
                     <p className="text-subtle"
                       style={{ fontSize: 'clamp(1.05rem, 1.1vw, 1.2rem)', lineHeight: '1.65' }}>
                       Article content coming soon.
@@ -209,7 +209,7 @@ export default async function BlogPostPage({
                 </>
               )}
 
-              <Reveal from="bottom" delay={160}>
+              <Reveal from="bottom" delay={160} threshold={0.05} margin="0px 0px 60px 0px">
                 <div className="mt-10 pt-8 border-t border-border flex flex-col sm:flex-row gap-3">
                   <Link href="/blog" className="btn-base btn-ghost-dark">
                     ← Back to Blog

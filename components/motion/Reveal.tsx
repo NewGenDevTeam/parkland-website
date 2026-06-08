@@ -47,6 +47,11 @@ export interface RevealProps {
   blur?:      boolean;
   /** Animation duration in ms (default: 800). */
   duration?:  number;
+  /** IntersectionObserver threshold (default: 0.1). Lower = triggers earlier. */
+  threshold?: number;
+  /** IntersectionObserver rootMargin (default: '0px 0px -8% 0px').
+   *  Positive bottom value triggers before element enters viewport. */
+  margin?:    string;
 }
 
 export default function Reveal({
@@ -57,6 +62,8 @@ export default function Reveal({
   scale     = false,
   blur      = false,
   duration  = 800,
+  threshold = 0.1,
+  margin    = '0px 0px -8% 0px',
 }: RevealProps) {
   const ref                   = useRef<HTMLDivElement>(null);
   const [ready,   setReady]   = useState(false);
@@ -101,8 +108,8 @@ export default function Reveal({
         }
       },
       {
-        threshold:  0.1,
-        rootMargin: '0px 0px -8% 0px',
+        threshold,
+        rootMargin: margin,
       },
     );
 
