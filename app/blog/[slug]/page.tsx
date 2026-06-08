@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image       from 'next/image';
 import Link        from 'next/link';
 import { notFound } from 'next/navigation';
 import Header  from '@/components/layout/Header';
@@ -151,6 +152,26 @@ export default async function BlogPostPage({
         {/* ══ Article body ════════════════════════════════════════════════════ */}
         <section className="section-white py-16 lg:py-20">
           <div className="container-site">
+
+            {/* Featured image — shown only when WordPress has one */}
+            {post.image && (
+              <Reveal from="bottom" delay={0}>
+                <div className="max-w-3xl mx-auto mb-12 rounded-2xl overflow-hidden
+                  shadow-[0_4px_24px_rgba(0,0,0,0.10)]">
+                  <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1280px) 768px, (min-width: 1024px) 75vw, 100vw"
+                      priority
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            )}
+
             <div className="max-w-2xl mx-auto">
 
               {post.content ? (
