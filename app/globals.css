@@ -840,3 +840,76 @@
     transform: none !important;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BLOG ARTICLE CONTENT — WordPress rendered HTML table styles
+   Uses !important + hard-coded colors because @theme inline tokens are NOT
+   emitted as real CSS custom properties and cannot be used via var() here.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Article wrapper: horizontal scroll container for wide tables on mobile */
+.blog-content {
+  overflow-x: auto;
+}
+
+/* WordPress block editor wraps tables in <figure class="wp-block-table"> */
+.blog-content .wp-block-table,
+.blog-content figure.wp-block-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 2rem 0;
+}
+
+/* ── Table shell ──────────────────────────────────────────────────────── */
+.blog-content table,
+.blog-content .wp-block-table table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 1.75rem 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  border: 1px solid rgba(151, 126, 85, 0.55) !important;
+}
+
+/* ── Cells ─────────────────────────────────────────────────────────────── */
+.blog-content th,
+.blog-content td,
+.blog-content .wp-block-table th,
+.blog-content .wp-block-table td {
+  padding: 14px 18px !important;
+  border: 1px solid rgba(151, 126, 85, 0.55) !important;
+  text-align: left !important;
+  vertical-align: top !important;
+  color: #3d3d3d;
+}
+
+/* ── Header row ────────────────────────────────────────────────────────── */
+.blog-content th,
+.blog-content .wp-block-table th {
+  font-weight: 700 !important;
+  background: #f7f3ea !important;
+  color: #1a2b26 !important;
+  white-space: nowrap;
+}
+
+/* ── Alternating rows ───────────────────────────────────────────────────── */
+.blog-content tbody tr:nth-child(even) td {
+  background: #fbfaf6;
+}
+
+/* ── Mobile: force horizontal scroll ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .blog-content .wp-block-table,
+  .blog-content figure.wp-block-table {
+    overflow-x: auto;
+  }
+
+  .blog-content table,
+  .blog-content .wp-block-table table {
+    min-width: 620px;
+  }
+}
