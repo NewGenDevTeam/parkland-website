@@ -178,7 +178,7 @@ export default async function BlogPostPage({
                 /* CMS post with content — render WordPress HTML */
                 <Reveal from="bottom" delay={0}>
                   <div
-                    className="text-body
+                    className="text-body blog-content
                       [&_p]:mb-5 [&_p]:leading-relaxed
                       [&_h2]:font-display [&_h2]:font-bold [&_h2]:text-ink [&_h2]:mt-8 [&_h2]:mb-3
                       [&_h3]:font-semibold [&_h3]:text-ink [&_h3]:mt-6 [&_h3]:mb-2
