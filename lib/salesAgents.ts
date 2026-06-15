@@ -5,12 +5,12 @@ export interface SalesAgent {
 }
 
 export const SALES_AGENTS: SalesAgent[] = [
-  { name: 'Qing Yi (PL)',   displayPhone: '+60 12-426 8155', whatsappPhone: '60124268155' },
-  { name: 'Gan (PL)',       displayPhone: '+60 12-680 1680', whatsappPhone: '60126801680' },
-  { name: 'Alan Wong (PL)', displayPhone: '+60 12-301 0776', whatsappPhone: '60123010776' },
-  { name: 'Zulaika (PL)',   displayPhone: '+60 12-864 8155', whatsappPhone: '60128648155' },
-  { name: 'Rafidah (PL)',   displayPhone: '+60 12-901 8671', whatsappPhone: '60129018671' },
-  { name: 'Afiqah (PL)',    displayPhone: '+60 12-266 9277', whatsappPhone: '60122669277' },
+  { name: 'Qing Yi',   displayPhone: '+60 12-426 8155', whatsappPhone: '60124268155' },
+  { name: 'Gan',       displayPhone: '+60 12-680 1680', whatsappPhone: '60126801680' },
+  { name: 'Alan Wong', displayPhone: '+60 12-301 0776', whatsappPhone: '60123010776' },
+  { name: 'Zulaika',   displayPhone: '+60 12-864 8155', whatsappPhone: '60128648155' },
+  { name: 'Rafidah',   displayPhone: '+60 12-901 8671', whatsappPhone: '60129018671' },
+  { name: 'Afiqah',    displayPhone: '+60 12-266 9277', whatsappPhone: '60122669277' },
 ];
 
 export function buildAgentWhatsAppUrl(
