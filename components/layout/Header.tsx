@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image         from 'next/image';
 import Link          from 'next/link';
 import { usePathname } from 'next/navigation';
+import WhatsAppAgentSelector from '@/components/ui/WhatsAppAgentSelector';
 
 const NAV_LINKS = [
   { label: 'Home',        href: '/'            },
@@ -15,8 +16,9 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
-  const [scrolled,  setScrolled]  = useState(false);
-  const [menuOpen,  setMenuOpen]  = useState(false);
+  const [scrolled,      setScrolled]      = useState(false);
+  const [menuOpen,      setMenuOpen]      = useState(false);
+  const [selectorOpen,  setSelectorOpen]  = useState(false);
   const pathname = usePathname();
 
   /* Scroll detection — also runs on mount to handle mid-page refresh */
@@ -41,12 +43,7 @@ export default function Header() {
   /* True when the bar should show dark text / solid glass */
   const solidBar = scrolled || !isHome;
 
-  /* On the Contact page, "Let's Talk" opens WhatsApp instead of /contact */
-  const ctaHref = pathname === '/contact'
-    ? 'https://api.whatsapp.com/send/?phone=60126315811&text&type=phone_number&app_absent=0'
-    : '/contact';
-  const ctaTarget = pathname === '/contact' ? '_blank' : undefined;
-  const ctaRel    = pathname === '/contact' ? 'noopener noreferrer' : undefined;
+  const isContactPage = pathname === '/contact';
 
   return (
     <>
@@ -128,17 +125,27 @@ export default function Header() {
             className="flex items-center gap-5 lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:z-[3]"
             style={{ right: 'clamp(1.5rem, 3vw, 4rem)' }}
           >
-            <Link
-              href={ctaHref}
-              target={ctaTarget}
-              rel={ctaRel}
-              className="hidden lg:inline-flex btn-base btn-primary
-                shadow-[0_2px_14px_rgba(200,169,126,0.40)]
-                hover:shadow-[0_4px_20px_rgba(200,169,126,0.60)]"
-              style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', fontWeight: 700 }}
-            >
-              Let&apos;s Talk
-            </Link>
+            {isContactPage ? (
+              <button
+                onClick={() => setSelectorOpen(true)}
+                className="hidden lg:inline-flex btn-base btn-primary
+                  shadow-[0_2px_14px_rgba(200,169,126,0.40)]
+                  hover:shadow-[0_4px_20px_rgba(200,169,126,0.60)] cursor-pointer"
+                style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', fontWeight: 700 }}
+              >
+                Let&apos;s Talk
+              </button>
+            ) : (
+              <Link
+                href="/contact"
+                className="hidden lg:inline-flex btn-base btn-primary
+                  shadow-[0_2px_14px_rgba(200,169,126,0.40)]
+                  hover:shadow-[0_4px_20px_rgba(200,169,126,0.60)]"
+                style={{ fontSize: 'clamp(0.95rem, 1vw, 1.1rem)', fontWeight: 700 }}
+              >
+                Let&apos;s Talk
+              </Link>
+            )}
 
             {/* Hamburger icon trigger — mobile only */}
             <button
@@ -157,6 +164,8 @@ export default function Header() {
           </div>
         </div>
       </header>
+
+      <WhatsAppAgentSelector isOpen={selectorOpen} onClose={() => setSelectorOpen(false)} />
 
       {/* ── Full-screen overlay menu (mobile) ────────────────────────────── */}
       <div
@@ -212,15 +221,22 @@ export default function Header() {
             </Link>
           ))}
 
-          <Link
-            href={ctaHref}
-            target={ctaTarget}
-            rel={ctaRel}
-            onClick={() => setMenuOpen(false)}
-            className="mt-8 btn-base btn-primary text-center"
-          >
-            Let&apos;s Talk
-          </Link>
+          {isContactPage ? (
+            <button
+              onClick={() => { setSelectorOpen(true); setMenuOpen(false); }}
+              className="mt-8 btn-base btn-primary text-center w-full cursor-pointer"
+            >
+              Let&apos;s Talk
+            </button>
+          ) : (
+            <Link
+              href="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-8 btn-base btn-primary text-center"
+            >
+              Let&apos;s Talk
+            </Link>
+          )}
         </nav>
       </div>
     </>

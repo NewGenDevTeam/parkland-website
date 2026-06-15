@@ -1,14 +1,15 @@
 import Image from 'next/image';
 import Link  from 'next/link';
 import Reveal from '@/components/motion/Reveal';
-import { getSiteSettings, buildWhatsAppHref } from '@/lib/wordpress';
+import { getSiteSettings } from '@/lib/wordpress';
+import ContactAgentCard from '@/components/ui/ContactAgentCard';
 
 const FALLBACK = {
   projectName: 'Parkland By The River @ Permas Jaya',
   location:    'Permas Jaya, Johor Bahru, Malaysia',
-  phone:       '+60 12-631 5811',
-  whatsapp:    'https://wa.me/60126315811?text=Hi%2C%20I%20am%20interested%20in%20Parkland%20By%20The%20River.',
 };
+
+/* ── Icons ──────────────────────────────────────────────────────────────── */
 
 function IcPhone() {
   return (
@@ -37,6 +38,8 @@ function IcPin() {
     </svg>
   );
 }
+
+/* ── Sales Gallery map ───────────────────────────────────────────────────── */
 
 function SalesGalleryMap() {
   return (
@@ -79,23 +82,25 @@ function SalesGalleryMap() {
   );
 }
 
+/* ── Static contact row (email, location) ────────────────────────────────── */
+
 function ContactRow({
   icon,
   label,
   value,
   href,
 }: {
-  icon:   React.ReactNode;
-  label:  string;
-  value:  string;
-  href?:  string;
+  icon:  React.ReactNode;
+  label: string;
+  value: React.ReactNode;
+  href?: string;
 }) {
   const inner = (
     <div className="flex items-center gap-4">
       <div className="w-10 h-10 rounded-full bg-gold/10 text-gold flex items-center justify-center shrink-0">
         {icon}
       </div>
-      <div>
+      <div className="min-w-0">
         <p style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}
           className="font-semibold uppercase tracking-widest text-subtle mb-0.5">
           {label}
@@ -130,13 +135,13 @@ function ContactRow({
   );
 }
 
+/* ── Main export ─────────────────────────────────────────────────────────── */
+
 export default async function ContactInfo() {
   const settings = await getSiteSettings();
 
-  const phone    = settings?.phone_number    || FALLBACK.phone;
-  const location = settings?.address         || FALLBACK.location;
-  const waHref   = buildWhatsAppHref(settings, FALLBACK.whatsapp);
-  const email    = settings?.email           || null;
+  const location = settings?.address || FALLBACK.location;
+  const email    = settings?.email   || null;
 
   return (
     <div className="flex flex-col gap-6">
@@ -156,43 +161,60 @@ export default async function ContactInfo() {
         </Reveal>
       </div>
 
-      {/* Contact cards + maps — all in one tightly-spaced group */}
+      {/* Contact cards + maps */}
       <div className="flex flex-col gap-3">
+
+        {/* CALL US — opens agent phone selector */}
         <Reveal from="bottom" delay={200}>
-          <ContactRow
+          <ContactAgentCard
+            mode="call"
             icon={<IcPhone />}
             label="Call Us"
-            value={phone}
-            href={`tel:+60${phone.replace(/^\+?60\s?/, '').replace(/^0/, '').replace(/[^0-9]/g, '')}`}
           />
         </Reveal>
+
+        {/* WHATSAPP — opens agent WhatsApp selector */}
         <Reveal from="bottom" delay={280}>
-          <ContactRow
+          <ContactAgentCard
+            mode="whatsapp"
             icon={<IcWhatsApp />}
             label="WhatsApp"
-            value={phone}
-            href={waHref}
           />
         </Reveal>
+
         {email && (
           <Reveal from="bottom" delay={320}>
             <ContactRow
               icon={<IcPhone />}
               label="Email"
-              value={email}
+              value={
+                <span className="break-all" style={{ overflowWrap: 'anywhere' }}>
+                  {email}
+                </span>
+              }
               href={`mailto:${email}`}
             />
           </Reveal>
         )}
+
         <Reveal from="bottom" delay={360}>
           <ContactRow
             icon={<IcPin />}
             label="Location"
-            value={location}
+            value={(() => {
+              const i = location.lastIndexOf(',');
+              if (i < 0) return location;
+              return (
+                <>
+                  <span className="block">{location.slice(0, i + 1)}</span>
+                  <span className="block">{location.slice(i + 2)}</span>
+                </>
+              );
+            })()}
           />
         </Reveal>
 
-        {/* Our Location map — same gap-3 as cards above */}
+        {/* Our Location map */}
         <Reveal from="bottom" scale delay={440}>
           <div>
             <p className="font-semibold uppercase tracking-widest text-subtle mb-2"
@@ -227,12 +249,12 @@ export default async function ContactInfo() {
           </div>
         </Reveal>
 
-        {/* Sales Gallery map — same gap-3 as everything above */}
+        {/* Sales Gallery map */}
         <Reveal from="bottom" scale delay={520}>
           <SalesGalleryMap />
         </Reveal>
-      </div>
 
+      </div>
     </div>
   );
 }
