@@ -6,8 +6,8 @@ import { getSiteSettings, buildWhatsAppHref } from '@/lib/wordpress';
 const FALLBACK = {
   projectName: 'Parkland By The River @ Permas Jaya',
   location:    'Permas Jaya, Johor Bahru, Malaysia',
-  phone:       '013-665 5111',
-  whatsapp:    'https://wa.me/60136655111',
+  phone:       '+60 12-631 5811',
+  whatsapp:    'https://wa.me/60126315811?text=Hi%2C%20I%20am%20interested%20in%20Parkland%20By%20The%20River.',
 };
 
 function IcPhone() {
@@ -35,6 +35,47 @@ function IcPin() {
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
+  );
+}
+
+function SalesGalleryMap() {
+  return (
+    <div>
+      <p className="font-semibold uppercase tracking-widest text-subtle mb-3"
+        style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>
+        Sales Gallery
+      </p>
+      <div className="overflow-hidden rounded-2xl border border-border
+        shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+        <iframe
+          src="https://www.google.com/maps?q=2.2188461,102.6645809&z=17&output=embed"
+          width="100%"
+          title="Parkland Sales Gallery location"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="h-40 md:h-50 block"
+          style={{ border: 0 }}
+        />
+        <div className="px-5 py-4 border-t border-border bg-[#FAFAF8]
+          flex items-center justify-between gap-4">
+          <p className="text-ink font-semibold leading-snug"
+            style={{ fontSize: 'clamp(1rem, 1.05vw, 1.125rem)' }}>
+            Parkland Group @ Grisek Sales Gallery
+          </p>
+          <a
+            href="https://maps.app.goo.gl/PCQ5rWpTZHPcNKam9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 text-gold font-semibold
+              hover:text-gold-deep transition-colors duration-200"
+            style={{ fontSize: 'clamp(0.9rem, 0.95vw, 1rem)' }}
+          >
+            Get Directions →
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -115,14 +156,14 @@ export default async function ContactInfo() {
         </Reveal>
       </div>
 
-      {/* Contact rows — staggered */}
+      {/* Contact cards + maps — all in one tightly-spaced group */}
       <div className="flex flex-col gap-3">
         <Reveal from="bottom" delay={200}>
           <ContactRow
             icon={<IcPhone />}
             label="Call Us"
             value={phone}
-            href={`tel:+60${phone.replace(/^0/, '').replace(/[^0-9]/g, '')}`}
+            href={`tel:+60${phone.replace(/^\+?60\s?/, '').replace(/^0/, '').replace(/[^0-9]/g, '')}`}
           />
         </Reveal>
         <Reveal from="bottom" delay={280}>
@@ -150,55 +191,47 @@ export default async function ContactInfo() {
             value={location}
           />
         </Reveal>
-      </div>
 
-      {/* Missing info notice */}
-      <Reveal from="bottom" delay={440}>
-        <div className="border border-gold/25 bg-gold/5 rounded-xl p-4">
-          <p className="leading-relaxed text-body"
-            style={{ fontSize: 'clamp(1rem, 1.05vw, 1.15rem)', lineHeight: '1.65' }}>
-            <span className="font-semibold text-ink">Note:</span>{' '}
-            Sales gallery address, email address, and operating hours are pending
-            client confirmation and will be updated before go-live.
-          </p>
-        </div>
-      </Reveal>
-
-      {/* Location map preview */}
-      <Reveal from="bottom" scale delay={520}>
-        <div>
-          <p className="font-semibold uppercase tracking-widest text-subtle mb-3"
-            style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>
-            Our Location
-          </p>
-          <Link href="/location" aria-label="View full location details">
-            <div className="relative w-full overflow-hidden rounded-2xl
-              border border-border
-              shadow-[0_2px_12px_rgba(0,0,0,0.08)]
-              hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)]
-              transition-shadow duration-300"
-              style={{ aspectRatio: '16/9' }}
-            >
-              <Image
-                src="/assets/parkland/location/location-map.webp"
-                alt="Parkland By The River — location map, Permas Jaya, Johor Bahru"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 38vw, 100vw"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute bottom-0 inset-x-0 px-4 py-3
-                  bg-linear-to-t from-black/60 to-transparent"
+        {/* Our Location map — same gap-3 as cards above */}
+        <Reveal from="bottom" scale delay={440}>
+          <div>
+            <p className="font-semibold uppercase tracking-widest text-subtle mb-2"
+              style={{ fontSize: 'clamp(1rem, 1vw, 1.15rem)' }}>
+              Our Location
+            </p>
+            <Link href="/location" aria-label="View full location details">
+              <div className="relative w-full h-44 overflow-hidden rounded-2xl
+                border border-border
+                shadow-[0_2px_12px_rgba(0,0,0,0.08)]
+                hover:shadow-[0_6px_24px_rgba(0,0,0,0.12)]
+                transition-shadow duration-300"
               >
-                <p className="text-white text-[0.9375rem] font-medium">
-                  Permas Jaya, Johor Bahru → <span className="text-gold">View Location</span>
-                </p>
+                <Image
+                  src="/assets/parkland/location/location-map.webp"
+                  alt="Parkland By The River — location map, Permas Jaya, Johor Bahru"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 38vw, 100vw"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute bottom-0 inset-x-0 px-4 py-3
+                    bg-linear-to-t from-black/60 to-transparent"
+                >
+                  <p className="text-white text-[0.9375rem] font-medium">
+                    Permas Jaya, Johor Bahru → <span className="text-gold">View Location</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        </div>
-      </Reveal>
+            </Link>
+          </div>
+        </Reveal>
+
+        {/* Sales Gallery map — same gap-3 as everything above */}
+        <Reveal from="bottom" scale delay={520}>
+          <SalesGalleryMap />
+        </Reveal>
+      </div>
 
     </div>
   );

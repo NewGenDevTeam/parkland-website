@@ -27,15 +27,6 @@ type Fields = {
 };
 const EMPTY: Fields = { name: '', phone: '', email: '', unit: '', message: '' };
 
-function IcCheck() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-      strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-gold" aria-hidden="true">
-      <path d="M20 6L9 17l-5-5" />
-    </svg>
-  );
-}
-
 function ChevronDown() {
   return (
     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8"
@@ -44,6 +35,46 @@ function ChevronDown() {
       aria-hidden="true">
       <path d="M4 6l4 4 4-4" />
     </svg>
+  );
+}
+
+function SuccessBox({ name }: { name: string }) {
+  return (
+    <div className="flex flex-col items-center text-center py-14 px-8
+      border border-border rounded-2xl bg-[#FAFAF8]"
+    >
+      {/* Check circle */}
+      <div className="w-16 h-16 rounded-full border border-gold/40 bg-gold/8
+        flex items-center justify-center mb-6 shrink-0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"
+          strokeLinecap="round" strokeLinejoin="round"
+          className="w-7 h-7 text-gold" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      </div>
+
+      {/* Heading */}
+      <p className="section-label-on-light mb-4">Interest Received</p>
+      <h3
+        className="font-display font-bold text-ink mb-4 leading-tight"
+        style={{ fontSize: 'clamp(1.5rem, 2vw, 2rem)', letterSpacing: '-0.025em' }}
+      >
+        {name ? `Thank you, ${name.split(' ')[0]}.` : 'Thank you.'}
+      </h3>
+
+      {/* Divider */}
+      <div className="w-10 h-px bg-gold/40 mb-5" />
+
+      {/* Description */}
+      <p className="text-body leading-relaxed max-w-sm"
+        style={{ fontSize: 'clamp(1rem, 1.05vw, 1.125rem)', lineHeight: '1.75' }}
+      >
+        Your enquiry has been prepared successfully.{' '}
+        <span className="text-ink font-medium">WhatsApp will open shortly</span>{' '}
+        — please tap <span className="text-ink font-medium">Send</span> to complete
+        your message to our team.
+      </p>
+    </div>
   );
 }
 
@@ -57,41 +88,34 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitted) return;
+
+    const unitLabel = UNIT_OPTIONS.find(o => o.value === fields.unit)?.label || fields.unit;
+    const text = [
+      'Hi Parkland By The River, I would like to register my interest.',
+      '',
+      `Full Name: ${fields.name}`,
+      `Phone Number: ${fields.phone}`,
+      `Email Address: ${fields.email}`,
+      `Preferred Unit Type: ${unitLabel}`,
+      `Message: ${fields.message.trim() || 'N/A'}`,
+      '',
+      'Please contact me for more information.',
+    ].join('\n');
+    const url = `https://api.whatsapp.com/send?phone=60126315811&text=${encodeURIComponent(text)}`;
+
     setSubmitted(true);
+    setTimeout(() => window.open(url, '_blank'), 1000);
   };
 
-  /* ── Thank-you state ── */
+  /* ── Success state ── */
   if (submitted) {
-    return (
-      <div className="flex flex-col items-center text-center py-14 px-6
-        border border-border rounded-2xl bg-[#FAFAF8]">
-        <div className="w-14 h-14 rounded-full bg-gold/10 flex items-center justify-center mb-5">
-          <IcCheck />
-        </div>
-        <h3
-          className="font-display font-bold text-ink mb-2"
-          style={{ fontSize: 'clamp(1.375rem, 2vw, 1.75rem)', letterSpacing: '-0.02em' }}
-        >
-          Thank you{fields.name ? `, ${fields.name.split(' ')[0]}` : ''}!
-        </h3>
-        <p className="text-[1.0625rem] leading-relaxed text-body max-w-sm mb-7">
-          We&apos;ve received your message. Our team will be in touch with
-          you shortly.
-        </p>
-        <button
-          onClick={() => { setFields(EMPTY); setSubmitted(false); }}
-          className="text-[1rem] font-semibold text-gold hover:text-gold-deep
-            underline underline-offset-2 transition-colors duration-200"
-        >
-          Send another message
-        </button>
-      </div>
-    );
+    return <SuccessBox name={fields.name} />;
   }
 
   /* ── Form ── */
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
       {/* Full Name */}
       <div>
@@ -147,11 +171,12 @@ export default function ContactForm() {
       {/* Unit type */}
       <div>
         <label htmlFor="cf-unit" className={LABEL_CLASS}>
-          Preferred Unit Type
+          Preferred Unit Type <span className="text-gold">*</span>
         </label>
         <div className="relative">
           <select
             id="cf-unit"
+            required
             value={fields.unit}
             onChange={set('unit')}
             className={`${FIELD_CLASS} appearance-none pr-10`}

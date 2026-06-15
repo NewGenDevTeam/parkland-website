@@ -1,4 +1,4 @@
-export default function WhatsAppButton({ href = 'https://wa.me/60136655111' }: { href?: string } = {}) {
+export default function WhatsAppButton({ href = 'https://wa.me/60126315811?text=Hi%2C%20I%20am%20interested%20in%20Parkland%20By%20The%20River.' }: { href?: string } = {}) {
   return (
     <div className="wa-wrapper">
       <a

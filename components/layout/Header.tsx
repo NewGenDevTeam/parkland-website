@@ -41,6 +41,13 @@ export default function Header() {
   /* True when the bar should show dark text / solid glass */
   const solidBar = scrolled || !isHome;
 
+  /* On the Contact page, "Let's Talk" opens WhatsApp instead of /contact */
+  const ctaHref = pathname === '/contact'
+    ? 'https://api.whatsapp.com/send/?phone=60126315811&text&type=phone_number&app_absent=0'
+    : '/contact';
+  const ctaTarget = pathname === '/contact' ? '_blank' : undefined;
+  const ctaRel    = pathname === '/contact' ? 'noopener noreferrer' : undefined;
+
   return (
     <>
       {/* ── Fixed header bar ─────────────────────────────────────────────── */}
@@ -122,7 +129,9 @@ export default function Header() {
             style={{ right: 'clamp(1.5rem, 3vw, 4rem)' }}
           >
             <Link
-              href="/contact"
+              href={ctaHref}
+              target={ctaTarget}
+              rel={ctaRel}
               className="hidden lg:inline-flex btn-base btn-primary
                 shadow-[0_2px_14px_rgba(200,169,126,0.40)]
                 hover:shadow-[0_4px_20px_rgba(200,169,126,0.60)]"
@@ -204,7 +213,9 @@ export default function Header() {
           ))}
 
           <Link
-            href="/contact"
+            href={ctaHref}
+            target={ctaTarget}
+            rel={ctaRel}
             onClick={() => setMenuOpen(false)}
             className="mt-8 btn-base btn-primary text-center"
           >

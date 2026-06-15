@@ -218,7 +218,7 @@ export async function getBlogPostBySlug(slug: string): Promise<DisplayPost | und
 
 export function buildWhatsAppHref(
   settings: WPSiteSettings | null,
-  fallback = 'https://wa.me/60136655111',
+  fallback = 'https://wa.me/60126315811?text=Hi%2C%20I%20am%20interested%20in%20Parkland%20By%20The%20River.',
 ): string {
   const num = settings?.whatsapp_number;
   if (!num) return fallback;
