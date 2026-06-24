@@ -7,7 +7,7 @@ import ContactInfo from '@/components/sections/ContactInfo';
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title:       'Contact Parkland By The River',
+  title:       'Contact Parkland By The River | Freehold Apartment Johor Bahru',
   description: 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
   keywords: [
     'Parkland By The River contact',
