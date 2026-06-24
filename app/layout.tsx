@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     'waterfront condo Johor',
   ],
   authors: [{ name: 'Parkland Group' }],
+  icons: {
+    icon: '/icon.png',
+  },
   robots: {
     index:     true,
     follow:    true,

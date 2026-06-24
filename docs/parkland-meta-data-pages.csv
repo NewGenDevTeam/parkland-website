@@ -1,0 +1,119 @@
+,Page,Meta Title,Meta Description,Schema
+https://www.parklandbytheriver.com.my/,Homepage,Parkland By The River | Freehold Apartment in Permas Jaya,"Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.","{
+  ""@context"": ""https://schema.org"",
+  ""@graph"": [
+    {
+      ""@type"": ""Organization"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/#organization"",
+      ""name"": ""Parkland Group"",
+      ""url"": ""https://www.parklandbytheriver.com.my/"",
+      ""logo"": ""https://www.parklandbytheriver.com.my/_next/image?url=%2Fassets%2Fparkland%2Flogo%2Fparkland-logo.webp&w=384&q=75"",
+      ""telephone"": ""+60-16-967-9111"",
+      ""address"": {
+        ""@type"": ""PostalAddress"",
+        ""streetAddress"": ""Lot 156682, Lebuhraya Johor Bahru-Pasir Gudang"",
+        ""addressLocality"": ""Johor Bahru"",
+        ""addressRegion"": ""Johor"",
+        ""postalCode"": ""81750"",
+        ""addressCountry"": ""MY""
+      },
+      ""sameAs"": [
+        ""https://www.facebook.com/parklandgroup"",
+        ""https://www.instagram.com/parkland_group"",
+        ""https://www.tiktok.com/@parkland_group"",
+        ""https://www.youtube.com/@ParklandGroupMY"",
+        ""https://www.linkedin.com/company/parkland-group-my/""
+      ]
+    },
+    {
+      ""@type"": ""WebSite"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/#website"",
+      ""url"": ""https://www.parklandbytheriver.com.my/"",
+      ""name"": ""Parkland By The River"",
+      ""publisher"": {
+        ""@id"": ""https://www.parklandbytheriver.com.my/#organization""
+      }
+    },
+    {
+      ""@type"": ""ApartmentComplex"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/#apartment"",
+      ""name"": ""Parkland By The River"",
+      ""url"": ""https://www.parklandbytheriver.com.my/"",
+      ""description"": ""A freehold apartment development in Permas Jaya, Johor Bahru featuring riverside living, modern facilities, and convenient access to CIQ and RTS.""
+    }
+  ]
+}"
+https://www.parklandbytheriver.com.my/location,Location,Strategic Location Near CIQ & RTS | Parkland By The River,"Located in Permas Jaya, Parkland By The River offers convenient access to CIQ, RTS Bukit Chagar, major highways, schools, malls, and amenities.","{
+  ""@context"": ""https://schema.org"",
+  ""@graph"": [
+    {
+      ""@type"": ""Place"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/location/#place"",
+      ""name"": ""Parkland By The River"",
+      ""address"": {
+        ""@type"": ""PostalAddress"",
+        ""streetAddress"": ""Lot 156682, Lebuhraya Johor Bahru-Pasir Gudang"",
+        ""addressLocality"": ""Johor Bahru"",
+        ""addressRegion"": ""Johor"",
+        ""postalCode"": ""81750"",
+        ""addressCountry"": ""MY""
+      }
+    },
+    {
+      ""@type"": ""WebPage"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/location/#webpage"",
+      ""url"": ""https://www.parklandbytheriver.com.my/location"",
+      ""name"": ""Strategic Location Near CIQ & RTS | Parkland By The River"",
+      ""isPartOf"": {
+        ""@id"": ""https://www.parklandbytheriver.com.my/#website""
+      }
+    }
+  ]
+}"
+https://www.parklandbytheriver.com.my/floor-plans,Floor Plans,Apartment Floor Plans | Parkland By The River,"Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.","{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""WebPage"",
+  ""@id"": ""https://www.parklandbytheriver.com.my/floor-plans/#webpage"",
+  ""url"": ""https://www.parklandbytheriver.com.my/floor-plans"",
+  ""name"": ""Apartment Floor Plans | Parkland By The River"",
+  ""description"": ""Explore apartment layouts ranging from 562 to 1,020 sqft at Parkland By The River.""
+}"
+https://www.parklandbytheriver.com.my/facilities,Facilities,Lifestyle Facilities | Parkland By The River,"Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.","{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""WebPage"",
+  ""@id"": ""https://www.parklandbytheriver.com.my/facilities/#webpage"",
+  ""url"": ""https://www.parklandbytheriver.com.my/facilities"",
+  ""name"": ""Lifestyle Facilities | Parkland By The River"",
+  ""description"": ""Discover lifestyle facilities designed for relaxation, wellness, recreation, and family living.""
+}"
+https://www.parklandbytheriver.com.my/blog,Blog,Property Insights & Homebuying Guides | Parkland By The River,"Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.","{
+  ""@context"": ""https://schema.org"",
+  ""@type"": ""Blog"",
+  ""@id"": ""https://www.parklandbytheriver.com.my/blog/#blog"",
+  ""url"": ""https://www.parklandbytheriver.com.my/blog"",
+  ""name"": ""Property Insights & Homebuying Guides"",
+  ""publisher"": {
+    ""@id"": ""https://www.parklandbytheriver.com.my/#organization""
+  }
+}"
+https://www.parklandbytheriver.com.my/contact,Contact,Contact Parkland By The River,"Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.","{
+  ""@context"": ""https://schema.org"",
+  ""@graph"": [
+    {
+      ""@type"": ""ContactPage"",
+      ""@id"": ""https://www.parklandbytheriver.com.my/contact/#contactpage"",
+      ""url"": ""https://www.parklandbytheriver.com.my/contact"",
+      ""name"": ""Contact Parkland By The River""
+    },
+    {
+      ""@type"": ""ContactPoint"",
+      ""contactType"": ""Sales Enquiry"",
+      ""telephone"": ""+60-16-967-9111"",
+      ""contactOption"": ""TollFree"",
+      ""availableLanguage"": [
+        ""English"",
+        ""Malay""
+      ]
+    }
+  ]
+}"
