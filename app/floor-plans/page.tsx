@@ -6,30 +6,27 @@ import FloorPlanSelector from '@/components/sections/FloorPlanSelector';
 import Reveal            from '@/components/motion/Reveal';
 import Stagger           from '@/components/motion/Stagger';
 import { FLOOR_PLANS }  from '@/lib/floorPlans';
-import { getFloorPlans, getPageSEO } from '@/lib/wordpress';
+import { getFloorPlans } from '@/lib/wordpress';
 
 export const revalidate = 300;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getPageSEO('floor-plans');
-  return {
-    title:       seo?.seo_title        || 'Apartment Floor Plans | Parkland By The River',
-    description: seo?.meta_description || 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
-    keywords: [
-      'Parkland By The River floor plan',
-      'Permas Jaya serviced apartment floor plan',
-      'Type A Type B Type C unit JB',
-      'freehold apartment Johor Bahru 1 2 3 bedroom',
-    ],
-    alternates: { canonical: '/floor-plans' },
-    openGraph: {
-      title:       seo?.seo_title        || 'Apartment Floor Plans | Parkland By The River',
-      description: seo?.meta_description || 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
-      url:         '/floor-plans',
-      images:      OG_IMAGE,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:       'Apartment Floor Plans | Parkland By The River',
+  description: 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
+  keywords: [
+    'Parkland By The River floor plan',
+    'Permas Jaya serviced apartment floor plan',
+    'Type A Type B Type C unit JB',
+    'freehold apartment Johor Bahru 1 2 3 bedroom',
+  ],
+  alternates: { canonical: '/floor-plans' },
+  openGraph: {
+    title:       'Apartment Floor Plans | Parkland By The River',
+    description: 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
+    url:         '/floor-plans',
+    images:      OG_IMAGE,
+  },
+};
 
 /* ─────────────────────────────────────────────────────────────────────────── */
 export default async function FloorPlansPage() {

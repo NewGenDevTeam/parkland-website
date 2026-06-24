@@ -8,46 +8,38 @@ import ProjectHighlights from '@/components/sections/ProjectHighlights';
 import VideoShowcase     from '@/components/sections/VideoShowcase';
 import LocationPreview   from '@/components/sections/LocationPreview';
 import Reveal            from '@/components/motion/Reveal';
-import { getPageSEO }   from '@/lib/wordpress';
-
 export const revalidate = 300;
 
-const DEFAULT_TITLE       = 'Parkland By The River | Freehold Apartment in Permas Jaya';
-const DEFAULT_DESCRIPTION = 'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.';
-
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getPageSEO('home');
-  return {
-    title:       seo?.seo_title        || DEFAULT_TITLE,
-    description: seo?.meta_description || DEFAULT_DESCRIPTION,
-    keywords: [
-      'Parkland By The River',
-      'apartment Johor Bahru',
-      'condo Johor Bahru',
-      'new property launch',
-      'freehold property',
-      'new apartment Johor Bahru',
-      'family-friendly apartment',
-      'parkland by the river Johor',
-      'new launch condo Johor',
-      'residential property Johor',
-      'freehold apartment Johor',
-      'riverside apartment Johor',
-      'waterfront condo Johor',
-      'apartment for Singapore workers Johor',
-      'Johor property for Singaporeans',
-      'family apartment Johor Bahru',
-      'affordable condo Johor Bahru',
-    ],
-    alternates: { canonical: '/' },
-    openGraph: {
-      title:       seo?.seo_title        || DEFAULT_TITLE,
-      description: seo?.meta_description || DEFAULT_DESCRIPTION,
-      url:         '/',
-      images:      OG_IMAGE,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:       'Parkland By The River | Freehold Apartment in Permas Jaya',
+  description: 'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.',
+  keywords: [
+    'Parkland By The River',
+    'apartment Johor Bahru',
+    'condo Johor Bahru',
+    'new property launch',
+    'freehold property',
+    'new apartment Johor Bahru',
+    'family-friendly apartment',
+    'parkland by the river Johor',
+    'new launch condo Johor',
+    'residential property Johor',
+    'freehold apartment Johor',
+    'riverside apartment Johor',
+    'waterfront condo Johor',
+    'apartment for Singapore workers Johor',
+    'Johor property for Singaporeans',
+    'family apartment Johor Bahru',
+    'affordable condo Johor Bahru',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title:       'Parkland By The River | Freehold Apartment in Permas Jaya',
+    description: 'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.',
+    url:         '/',
+    images:      OG_IMAGE,
+  },
+};
 
 export default function Home() {
   const jsonLd = {

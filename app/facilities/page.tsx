@@ -14,35 +14,32 @@ import FacilityExperienceMap from '@/components/sections/FacilityExperienceMap';
 import SafeAutoplayVideo     from '@/components/ui/SafeAutoplayVideo';
 import Reveal                from '@/components/motion/Reveal';
 import Stagger               from '@/components/motion/Stagger';
-import { getFacilities, getPageSEO } from '@/lib/wordpress';
+import { getFacilities } from '@/lib/wordpress';
 
 export const revalidate = 300;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getPageSEO('facilities');
-  return {
-    title:       seo?.seo_title        || 'Lifestyle Facilities | Parkland By The River',
-    description: seo?.meta_description || 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
-    keywords: [
-      'luxury apartment',
-      'apartment with swimming pool',
-      'modern apartment',
-      'apartment with facilities Johor',
-      'apartment with river view Johor',
-      'apartment with premium facilities',
-      'Parkland By The River facilities',
-      'Permas Jaya swimming pool',
-      'serviced apartment amenities Johor Bahru',
-    ],
-    alternates: { canonical: '/facilities' },
-    openGraph: {
-      title:       seo?.seo_title        || 'Lifestyle Facilities | Parkland By The River',
-      description: seo?.meta_description || 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
-      url:         '/facilities',
-      images:      OG_IMAGE,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:       'Lifestyle Facilities | Parkland By The River',
+  description: 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
+  keywords: [
+    'luxury apartment',
+    'apartment with swimming pool',
+    'modern apartment',
+    'apartment with facilities Johor',
+    'apartment with river view Johor',
+    'apartment with premium facilities',
+    'Parkland By The River facilities',
+    'Permas Jaya swimming pool',
+    'serviced apartment amenities Johor Bahru',
+  ],
+  alternates: { canonical: '/facilities' },
+  openGraph: {
+    title:       'Lifestyle Facilities | Parkland By The River',
+    description: 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
+    url:         '/facilities',
+    images:      OG_IMAGE,
+  },
+};
 
 /* ── Thematic highlights (all facility names are verified from old website) ── */
 const HIGHLIGHTS = [

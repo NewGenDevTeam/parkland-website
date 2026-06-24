@@ -5,36 +5,33 @@ import Header  from '@/components/layout/Header';
 import BlogGrid from '@/components/sections/BlogGrid';
 import Reveal   from '@/components/motion/Reveal';
 import { BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
-import { getBlogPosts, getPageSEO } from '@/lib/wordpress';
+import { getBlogPosts } from '@/lib/wordpress';
 
 export const revalidate = 300;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getPageSEO('blog');
-  return {
-    title:       seo?.seo_title        || 'Property Insights & Homebuying Guides | Parkland By The River',
-    description: seo?.meta_description || 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
-    keywords: [
-      'property investment',
-      'investment property',
-      'Johor property investment',
-      'condo investment',
-      'apartment investment',
-      'riverside living',
-      'high rental yield property',
-      'best property investment Johor',
-      'Johor condo investment',
-      'high rental yield Johor property',
-    ],
-    alternates: { canonical: '/blog' },
-    openGraph: {
-      title:       seo?.seo_title        || 'Property Insights & Homebuying Guides | Parkland By The River',
-      description: seo?.meta_description || 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
-      url:         '/blog',
-      images:      OG_IMAGE,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:       'Property Insights & Homebuying Guides | Parkland By The River',
+  description: 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
+  keywords: [
+    'property investment',
+    'investment property',
+    'Johor property investment',
+    'condo investment',
+    'apartment investment',
+    'riverside living',
+    'high rental yield property',
+    'best property investment Johor',
+    'Johor condo investment',
+    'high rental yield Johor property',
+  ],
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title:       'Property Insights & Homebuying Guides | Parkland By The River',
+    description: 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
+    url:         '/blog',
+    images:      OG_IMAGE,
+  },
+};
 
 const CATEGORIES = [
   'Location Guide',

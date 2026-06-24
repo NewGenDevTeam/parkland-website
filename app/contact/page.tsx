@@ -4,30 +4,25 @@ import Header      from '@/components/layout/Header';
 import Reveal      from '@/components/motion/Reveal';
 import ContactForm from '@/components/sections/ContactForm';
 import ContactInfo from '@/components/sections/ContactInfo';
-import { getPageSEO } from '@/lib/wordpress';
-
 export const revalidate = 300;
 
-export async function generateMetadata(): Promise<Metadata> {
-  const seo = await getPageSEO('contact');
-  return {
-    title:       seo?.seo_title        || 'Contact Parkland By The River',
-    description: seo?.meta_description || 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
-    keywords: [
-      'Parkland By The River contact',
-      'Permas Jaya property enquiry',
-      'Johor Bahru serviced apartment contact',
-      'Parkland register interest',
-    ],
-    alternates: { canonical: '/contact' },
-    openGraph: {
-      title:       seo?.seo_title        || 'Contact Parkland By The River',
-      description: seo?.meta_description || 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
-      url:         '/contact',
-      images:      OG_IMAGE,
-    },
-  };
-}
+export const metadata: Metadata = {
+  title:       'Contact Parkland By The River',
+  description: 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
+  keywords: [
+    'Parkland By The River contact',
+    'Permas Jaya property enquiry',
+    'Johor Bahru serviced apartment contact',
+    'Parkland register interest',
+  ],
+  alternates: { canonical: '/contact' },
+  openGraph: {
+    title:       'Contact Parkland By The River',
+    description: 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
+    url:         '/contact',
+    images:      OG_IMAGE,
+  },
+};
 
 export default function ContactPage() {
   const jsonLd = {
