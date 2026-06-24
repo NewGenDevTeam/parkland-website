@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display, Alegreya } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import HashScrollHandler  from "@/components/motion/HashScrollHandler";
 import PageLoader         from "@/components/motion/PageLoader";
@@ -28,9 +29,9 @@ const SITE_URL = 'https://www.parklandbytheriver.com.my';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: 'Parkland By The River | Modern Apartment in Johor Bahru',
+  title: 'Parkland By The River | Freehold Apartment in Permas Jaya',
   description:
-    'Discover Parkland By The River, a modern residential development in Johor Bahru featuring premium facilities, spacious layouts, and a strategic location.',
+    'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.',
   keywords: [
     'Parkland By The River',
     'apartment Johor Bahru',
@@ -55,21 +56,21 @@ export const metadata: Metadata = {
     locale:      'en_MY',
     url:         SITE_URL,
     siteName:    'Parkland By The River',
-    title:       'Parkland By The River | Modern Apartment in Johor Bahru',
-    description: 'Discover Parkland By The River, a modern residential development in Johor Bahru featuring premium facilities, spacious layouts, and a strategic location.',
+    title:       'Parkland By The River | Freehold Apartment in Permas Jaya',
+    description: 'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.',
     images: [
       {
         url:    '/assets/parkland/images/hero-render.jpg',
         width:  1200,
         height: 630,
-        alt:    'Parkland By The River — modern residential development in Johor Bahru',
+        alt:    'Parkland By The River — freehold apartment in Permas Jaya, Johor Bahru',
       },
     ],
   },
   twitter: {
     card:        'summary_large_image',
-    title:       'Parkland By The River | Modern Apartment in Johor Bahru',
-    description: 'Discover Parkland By The River, a modern residential development in Johor Bahru featuring premium facilities, spacious layouts, and a strategic location.',
+    title:       'Parkland By The River | Freehold Apartment in Permas Jaya',
+    description: 'Discover a freehold apartment in Permas Jaya with riverside living, modern facilities, and easy access to CIQ, RTS, and Johor Bahru city centre.',
     images:      ['/assets/parkland/images/hero-render.jpg'],
   },
 };
@@ -86,6 +87,16 @@ export default function RootLayout({
         <HashScrollHandler />
         {children}
         <WhatsAppButtonWrapper />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MCRK2TCVMH"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-MCRK2TCVMH');
+        `}</Script>
       </body>
     </html>
   );

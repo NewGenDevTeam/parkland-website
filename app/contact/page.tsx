@@ -11,8 +11,8 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getPageSEO('contact');
   return {
-    title:       seo?.seo_title        || 'Contact Us | Parkland By The River',
-    description: seo?.meta_description || 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
+    title:       seo?.seo_title        || 'Contact Parkland By The River',
+    description: seo?.meta_description || 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
     keywords: [
       'Parkland By The River contact',
       'Permas Jaya property enquiry',
@@ -21,8 +21,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: '/contact' },
     openGraph: {
-      title:       seo?.seo_title        || 'Contact Us | Parkland By The River',
-      description: seo?.meta_description || 'Get in touch with our team for inquiries, project details, unit availability, or to schedule an appointment at Parkland By The River.',
+      title:       seo?.seo_title        || 'Contact Parkland By The River',
+      description: seo?.meta_description || 'Get in touch with the Parkland By The River team for project information, floor plans, availability, and latest updates.',
       url:         '/contact',
       images:      OG_IMAGE,
     },
@@ -30,8 +30,27 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function ContactPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'ContactPage',
+        '@id': 'https://www.parklandbytheriver.com.my/contact/#contactpage',
+        url: 'https://www.parklandbytheriver.com.my/contact',
+        name: 'Contact Parkland By The River',
+      },
+      {
+        '@type': 'ContactPoint',
+        contactType: 'Sales Enquiry',
+        telephone: '+60-16-967-9111',
+        contactOption: 'TollFree',
+        availableLanguage: ['English', 'Malay'],
+      },
+    ],
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main>
 

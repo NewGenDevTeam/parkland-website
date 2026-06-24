@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link              from 'next/link';
+import { OG_IMAGE }     from '@/lib/seoConfig';
 import Header            from '@/components/layout/Header';
 import FloorPlanSelector from '@/components/sections/FloorPlanSelector';
 import Reveal            from '@/components/motion/Reveal';
@@ -12,14 +13,21 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getPageSEO('floor-plans');
   return {
-    title:       seo?.seo_title        || 'Floor Plans | Parkland By The River — Type A, B & C Units',
-    description: seo?.meta_description || 'Explore three thoughtfully designed unit types at Parkland By The River — Type A (562 sqft, 1 Bed), Type B (820 sqft, 2 Bed), and Type C (1,020 sqft, 3 Bed) freehold serviced apartments in Permas Jaya, Johor Bahru.',
+    title:       seo?.seo_title        || 'Apartment Floor Plans | Parkland By The River',
+    description: seo?.meta_description || 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
     keywords: [
       'Parkland By The River floor plan',
       'Permas Jaya serviced apartment floor plan',
       'Type A Type B Type C unit JB',
       'freehold apartment Johor Bahru 1 2 3 bedroom',
     ],
+    alternates: { canonical: '/floor-plans' },
+    openGraph: {
+      title:       seo?.seo_title        || 'Apartment Floor Plans | Parkland By The River',
+      description: seo?.meta_description || 'Explore apartment layouts from 562 to 1,020 sqft, thoughtfully designed for individuals, couples, and growing families.',
+      url:         '/floor-plans',
+      images:      OG_IMAGE,
+    },
   };
 }
 
@@ -27,9 +35,17 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function FloorPlansPage() {
   const cmsPlans = await getFloorPlans();
   const plans    = cmsPlans ?? FLOOR_PLANS;
-
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://www.parklandbytheriver.com.my/floor-plans/#webpage',
+    url: 'https://www.parklandbytheriver.com.my/floor-plans',
+    name: 'Apartment Floor Plans | Parkland By The River',
+    description: 'Explore apartment layouts ranging from 562 to 1,020 sqft at Parkland By The River.',
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main>
 

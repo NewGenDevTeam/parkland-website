@@ -12,8 +12,8 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getPageSEO('blog');
   return {
-    title:       seo?.seo_title        || 'Property Insights & Investment Guide | Parkland Blog',
-    description: seo?.meta_description || 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
+    title:       seo?.seo_title        || 'Property Insights & Homebuying Guides | Parkland By The River',
+    description: seo?.meta_description || 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
     keywords: [
       'property investment',
       'investment property',
@@ -28,8 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: '/blog' },
     openGraph: {
-      title:       seo?.seo_title        || 'Property Insights & Investment Guide | Parkland Blog',
-      description: seo?.meta_description || 'Explore property insights, market trends, investment opportunities, and useful guides for homebuyers and investors in Johor Bahru.',
+      title:       seo?.seo_title        || 'Property Insights & Homebuying Guides | Parkland By The River',
+      description: seo?.meta_description || 'Read articles on Johor Bahru property trends, investment insights, riverside living, and practical guides for homebuyers.',
       url:         '/blog',
       images:      OG_IMAGE,
     },
@@ -47,8 +47,17 @@ const CATEGORIES = [
 
 export default async function BlogPage() {
   const cmsPosts = await getBlogPosts();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': 'https://www.parklandbytheriver.com.my/blog/#blog',
+    url: 'https://www.parklandbytheriver.com.my/blog',
+    name: 'Property Insights & Homebuying Guides',
+    publisher: { '@id': 'https://www.parklandbytheriver.com.my/#organization' },
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main>
 

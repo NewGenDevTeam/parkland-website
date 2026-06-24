@@ -21,8 +21,8 @@ export const revalidate = 300;
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getPageSEO('facilities');
   return {
-    title:       seo?.seo_title        || 'Premium Facilities for Modern Living | Parkland',
-    description: seo?.meta_description || 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
+    title:       seo?.seo_title        || 'Lifestyle Facilities | Parkland By The River',
+    description: seo?.meta_description || 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
     keywords: [
       'luxury apartment',
       'apartment with swimming pool',
@@ -36,8 +36,8 @@ export async function generateMetadata(): Promise<Metadata> {
     ],
     alternates: { canonical: '/facilities' },
     openGraph: {
-      title:       seo?.seo_title        || 'Premium Facilities for Modern Living | Parkland',
-      description: seo?.meta_description || 'Experience premium facilities including recreational spaces, lifestyle amenities, and features designed for comfortable living at Parkland By The River, Johor Bahru.',
+      title:       seo?.seo_title        || 'Lifestyle Facilities | Parkland By The River',
+      description: seo?.meta_description || 'Discover lifestyle facilities including fitness, recreation, wellness, and family-friendly spaces designed for everyday living.',
       url:         '/facilities',
       images:      OG_IMAGE,
     },
@@ -107,9 +107,17 @@ const HIGHLIGHTS = [
 export default async function FacilitiesPage() {
   const cmsFacilities = await getFacilities();
   const facilities    = cmsFacilities ?? undefined;
-
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://www.parklandbytheriver.com.my/facilities/#webpage',
+    url: 'https://www.parklandbytheriver.com.my/facilities',
+    name: 'Lifestyle Facilities | Parkland By The River',
+    description: 'Discover lifestyle facilities designed for relaxation, wellness, recreation, and family living.',
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       <main>
 
