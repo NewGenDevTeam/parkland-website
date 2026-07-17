@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/seoConfig';
 import Header          from '@/components/layout/Header';
+import Footer          from '@/components/layout/Footer';
 import LocationSection from '@/components/sections/LocationSection';
 
 export const metadata: Metadata = {
@@ -59,6 +60,7 @@ export default function LocationPage() {
       <main className="pt-16 lg:pt-20">
         <LocationSection />
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link              from 'next/link';
 import { OG_IMAGE }     from '@/lib/seoConfig';
 import Header            from '@/components/layout/Header';
+import Footer            from '@/components/layout/Footer';
 import FloorPlanSelector from '@/components/sections/FloorPlanSelector';
 import Reveal            from '@/components/motion/Reveal';
 import Stagger           from '@/components/motion/Stagger';
@@ -302,6 +303,7 @@ export default async function FloorPlansPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

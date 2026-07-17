@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/seoConfig';
 import Header      from '@/components/layout/Header';
+import Footer      from '@/components/layout/Footer';
 import Reveal      from '@/components/motion/Reveal';
 import ContactForm from '@/components/sections/ContactForm';
 import ContactInfo from '@/components/sections/ContactInfo';
@@ -106,6 +107,7 @@ export default function ContactPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

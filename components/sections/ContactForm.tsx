@@ -101,6 +101,7 @@ export default function ContactForm() {
   const [submitted,  setSubmitted]  = useState(false);
   const [pendingMsg, setPendingMsg] = useState('');
   const [agentOpen,  setAgentOpen]  = useState(false);
+  const [accepted,   setAccepted]   = useState(false);
 
   const set = (key: keyof Fields) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
@@ -108,7 +109,7 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (submitted) return;
+    if (submitted || !accepted) return;
 
     const unitLabel = UNIT_OPTIONS.find(o => o.value === fields.unit)?.label || fields.unit;
     const text = [
@@ -126,6 +127,7 @@ export default function ContactForm() {
     setPendingMsg(text);
     setSubmitted(true);
     setAgentOpen(true);
+    setAccepted(false);
   };
 
   /* ── Success state ── */
@@ -235,10 +237,45 @@ export default function ContactForm() {
         />
       </div>
 
+      {/* Privacy Policy consent */}
+      <div className="flex items-start gap-3">
+        <input
+          id="cf-privacy"
+          type="checkbox"
+          required
+          checked={accepted}
+          onChange={e => setAccepted(e.target.checked)}
+          aria-describedby="cf-privacy-label"
+          className="mt-[0.2em] w-4 h-4 shrink-0 accent-gold cursor-pointer
+            border border-border rounded focus:outline-none focus:ring-2 focus:ring-gold/30"
+        />
+        <label
+          id="cf-privacy-label"
+          htmlFor="cf-privacy"
+          className="text-ink font-semibold uppercase tracking-wide leading-snug cursor-pointer select-none"
+          style={{ fontSize: 'clamp(0.8rem, 0.9vw, 0.95rem)' }}
+        >
+          By continuing, you accept the{' '}
+          <a
+            href="https://parklandgroup.my/PRIVACY"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gold underline underline-offset-2 hover:text-gold-deep transition-colors"
+          >
+            Privacy Policy
+          </a>
+          .
+        </label>
+      </div>
+
       {/* Submit */}
       <button
         type="submit"
-        className="w-full btn-base btn-primary mt-1"
+        disabled={!accepted}
+        aria-disabled={!accepted}
+        className={`w-full btn-base btn-primary mt-1 ${
+          accepted ? '' : 'opacity-50 cursor-not-allowed pointer-events-auto hover:bg-gold!'
+        }`}
         style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.25rem)' }}
       >
         Send Message

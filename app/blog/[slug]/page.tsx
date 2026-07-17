@@ -3,6 +3,7 @@ import Image       from 'next/image';
 import Link        from 'next/link';
 import { notFound } from 'next/navigation';
 import Header  from '@/components/layout/Header';
+import Footer  from '@/components/layout/Footer';
 import Reveal  from '@/components/motion/Reveal';
 import { BLOG_POSTS, BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
 import type { BlogCategory } from '@/lib/blogPosts';
@@ -225,6 +226,7 @@ export default async function BlogPostPage({
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

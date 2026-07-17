@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link             from 'next/link';
 import { OG_IMAGE }    from '@/lib/seoConfig';
 import Header            from '@/components/layout/Header';
+import Footer            from '@/components/layout/Footer';
 import Hero              from '@/components/sections/Hero';
 import ProjectOverview   from '@/components/sections/ProjectOverview';
 import ProjectHighlights from '@/components/sections/ProjectHighlights';
@@ -137,6 +138,7 @@ export default function Home() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

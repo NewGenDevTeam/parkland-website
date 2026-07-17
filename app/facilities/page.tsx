@@ -9,6 +9,7 @@ import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/seoConfig';
 import Link                  from 'next/link';
 import Header                from '@/components/layout/Header';
+import Footer                from '@/components/layout/Footer';
 import FacilitiesGrid        from '@/components/sections/FacilitiesGrid';
 import FacilityExperienceMap from '@/components/sections/FacilityExperienceMap';
 import SafeAutoplayVideo     from '@/components/ui/SafeAutoplayVideo';
@@ -287,6 +288,7 @@ export default async function FacilitiesPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }

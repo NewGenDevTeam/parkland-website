@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { OG_IMAGE } from '@/lib/seoConfig';
 import Link   from 'next/link';
 import Header  from '@/components/layout/Header';
+import Footer  from '@/components/layout/Footer';
 import BlogGrid from '@/components/sections/BlogGrid';
 import Reveal   from '@/components/motion/Reveal';
 import { BLOG_CATEGORY_STYLE } from '@/lib/blogPosts';
@@ -169,6 +170,7 @@ export default async function BlogPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }
