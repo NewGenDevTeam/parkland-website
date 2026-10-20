@@ -1,18 +1,19 @@
 import Image from 'next/image';
-import Link  from 'next/link';
+import Link from 'next/link';
 
 const NAV_LINKS = [
-  { label: 'Home',        href: '/'            },
-  { label: 'Location',    href: '/location'    },
-  { label: 'Facilities',  href: '/facilities'  },
+  { label: 'Home', href: '/' },
+  { label: 'Location', href: '/location' },
+  { label: 'Facilities', href: '/facilities' },
   { label: 'Floor Plans', href: '/floor-plans' },
-  { label: 'Blog',        href: '/blog'        },
-  { label: 'Contact',     href: '/contact'     },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 const LEGAL_LINKS = [
+  { label: 'Disclaimer', href: 'https://parklandgroup.my/disclaimer/' },
   { label: 'Terms & Conditions', href: 'https://parklandgroup.my/terms-conditions/' },
-  { label: 'Privacy Policy',     href: 'https://parklandgroup.my/PRIVACY'           },
+  { label: 'Privacy Policy', href: 'https://parklandgroup.my/PRIVACY' },
 ];
 
 const CONTACT_EMAIL = 'general@parklandgroup.com.my';
