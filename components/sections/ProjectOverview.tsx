@@ -5,7 +5,7 @@ import CountUp, { type CountUpFormat } from '@/components/motion/CountUp';
 const STATS: { value: number; format: CountUpFormat; label: string }[] = [
   { value: 4,    format: 'plain', label: 'Towers'               },
   { value: 36,   format: 'plain', label: 'Floors'               },
-  { value: 1078, format: 'comma', label: 'Phase 2 Units'        },
+  { value: 2156, format: 'comma', label: 'Residential Units'    },
   { value: 19,   format: 'plain', label: 'Lifestyle Facilities'  },
 ];
 
